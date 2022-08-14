@@ -1,2 +1,2 @@
 # romanantl.cz
-Personal webpage
+Personal website
