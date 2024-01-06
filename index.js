@@ -8,7 +8,7 @@ app.get('/', async(_, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const port = process.env.NODE_ENV === 'development' ? 8080 : 80;
+const port = process.env.NODE_ENV === 'development' ? 8080 : process.env.PORT;
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
