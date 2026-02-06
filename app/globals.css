@@ -4,20 +4,30 @@
 
 @layer base {
   body {
-    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    @apply bg-pastel-cream text-pastel-dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-pastel-dark text-pastel-cream;
+    }
   }
 }
 
 @layer components {
   .font-display {
-    font-family: var(--font-syne), system-ui, sans-serif;
+    font-family: var(--font-display), system-ui, sans-serif;
   }
   .socialbtn {
-    @apply flex h-10 w-10 items-center justify-center rounded-lg bg-white/90 dark:bg-gray-800/90 shadow-sm transition-all duration-300 hover:shadow-md;
-    background-image: none;
+    @apply flex h-10 w-10 items-center justify-center rounded-btn shadow-soft transition-all duration-300 cursor-pointer;
   }
   .socialbtn:hover {
-    background-image: linear-gradient(to right, #16bac5, #5fbff9);
-    @apply text-white border-0;
+    @apply shadow-soft-lg;
+  }
+  .btn-primary {
+    @apply rounded-btn bg-pastel-accent px-5 py-2.5 font-medium text-pastel-dark shadow-soft transition-all duration-300 hover:bg-pastel-accent-hover hover:shadow-soft-lg;
+  }
+  .card {
+    @apply rounded-card bg-pastel-sand/80 shadow-soft;
   }
 }

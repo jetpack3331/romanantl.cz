@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Domů",
+    "tvorba": "Tvorba",
+    "about": "O mně",
+    "employers": "Pracovní zkušenosti",
+    "contact": "Kontakt"
+  },
+  "site": {
+    "name": "Roman Antl",
+    "title": "Full Stack Developer / Contractor",
+    "tagline": "14+ let zkušeností · na volné noze"
+  },
+  "meta": {
+    "title": "Roman Antl - Full Stack Developer & AI produktové fotografie | Contractor",
+    "description": "Vývoj webů a aplikací (React, TypeScript, Vue), AI produktové vizuály a ComfyUI. 14+ let zkušeností. E-commerce, web3. Kontakt pro projekty."
+  },
+  "hero": {
+    "left": {
+      "sections": [
+        {
+          "title": "Vývoj moderních webů a aplikací",
+          "description": "Stavím rychlá a škálovatelná řešení, která rostou s vaším byznysem. Od promyšlené architektury až po bezpečné nasazení na moderním stacku (React, TypeScript, Vue)."
+        },
+        {
+          "title": "AI vizuály a digitální produkce",
+          "description": "Vynechte nákladná focení. Pomocí pokročilých workflow generuji fotorealistické produkty na modelech i v lifestylovém prostředí. Získáte profesionální vizuál se 100% zachováním věrnosti produktu."
+        },
+        {
+          "title": "Chytré škálování obsahu",
+          "description": "Maximalizujte potenciál jediné fotografie. Z jednoho zdroje vytvořím kompletní sadu variant pro váš katalog. Ideální cesta, jak rychle a levně naplnit e-shop pestrým obsahem."
+        },
+        {
+          "title": "Video obsah s vysokým dopadem",
+          "description": "Krátká, dynamická videa optimalizovaná přímo pro sociální sítě a reklamní kampaně. Tvořím obsah, který nejen vypadá skvěle, ale prokazatelně zvyšuje konverze a drží pozornost."
+        }
+      ]
+    },
+    "right": {
+      "name": "Roman Antl",
+      "subtitle": "Senior Full-stack Developer & AI Specialist",
+      "bio": "Spojuji **14+ let** zkušeností ve vývoji s nejnovějšími **AI** technologiemi. Mám za sebou náročné projekty od směnáren kryptoměn a **Web3** až po komplexní e-commerce řešení.\n\nDíky zapojení **AI** do workflow nedodávám jen kód, ale efektivní řešení šetřící váš čas i rozpočet. Hledáte partnera, který vidí za roh? Jste tu správně.",
+      "cta": "Nezávazně poptat",
+      "techStack": ["React", "Vue", "Node.js", "AI"]
+    }
+  },
+  "tvorba": {
+    "title": "Tvorba",
+    "subtitle": "Ukázky produktových obrázků a vizuálů vytvořených s pomocí AI a nástrojů - lidé v oblečení, různé pozice produktů, přepracování zdrojových fotek pomocí AI.",
+    "items": [
+      {
+        "id": "1",
+        "title": "Produktové obrázky - vizuální časovač",
+        "description": "Vygenerované obrázky vizuálního časovače. Různé pozice a varianty z jednoho zdroje.",
+        "imageText": "Vizuální časovač",
+        "hasVariants": true,
+        "variantsText": "Varianta 1 · 2 · 3 · 4"
+      }
+    ]
+  },
+  "employers": {
+    "title": "Pro koho jsem pracoval",
+    "list": [
+      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (dříve)", "period": "2021 - 2025", "what": "Frontend pro produkty v oblasti hardwarové kryptografie a peněženek." },
+      { "company": "Freelancer / různí klienti", "role": "Full Stack Developer", "period": "2011 - dosud", "what": "E-commerce, intranety, weby (Vue, React, PHP, PostgreSQL, AWS). Projekty jako Světdovolené.cz, Flexiana, Alza, Actum, QEST, System Nine." },
+      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Frontend vývoj pro technologickou platformu." },
+      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Intranetové aplikace a portály pro zaměstnance a klienty." },
+      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend a backend systémy (Phalcon, Angular, React, Redux, Webpack)." },
+      { "company": "NAR marketing s.r.o.", "role": "Programátor", "period": "2010 - 2011", "what": "E-business a marketingové procesy v B2B." }
+    ]
+  },
+  "about": {
+    "title": "O mně",
+    "experience": "Zkušenosti",
+    "skills": "Dovednosti",
+    "experienceList": [
+      { "role": "Senior Frontend Developer (dříve)", "company": "SatoshiLabs", "period": "2021 - 2025" },
+      { "role": "Full Stack Developer", "company": "Freelancer", "period": "2011 - dosud" },
+      { "role": "Frontend Developer", "company": "StreamBee", "period": "2020 - 2021" },
+      { "role": "JavaScript Front-End Developer", "company": "Apollo Soft", "period": "2016 - 2017" },
+      { "role": "Frontend Developer", "company": "Bileto Technologies", "period": "2014 - 2016" },
+      { "role": "Programátor", "company": "NAR marketing s.r.o.", "period": "2010 - 2011" }
+    ],
+    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
+    "aiTitle": "AI",
+    "aiSkillsList": ["AI generování obrázků", "AI generování videí", "Práce s AI nástroji (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "Generativní AI pro produktové fotografie"]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "formTitle": "Napište mi",
+    "formFields": { "name": "Jméno", "email": "E-mail", "message": "Zpráva" },
+    "submitLabel": "Odeslat",
+    "sending": "Odesílám…",
+    "successMessage": "Zpráva byla odeslána. Ozvu se co nejdřív.",
+    "errorMessage": "Něco se pokazilo. Zkuste to prosím znovu nebo napište přímo na e-mail.",
+    "errors": {
+      "nameRequired": "Jméno je povinné.",
+      "emailRequired": "E-mail je povinný.",
+      "emailInvalid": "Zadejte platnou e-mailovou adresu.",
+      "messageRequired": "Zpráva je povinná.",
+      "messageMin": "Zpráva musí mít alespoň 10 znaků."
+    },
+    "otherContacts": "Další kontakty",
+    "otherContactsDesc": "LinkedIn, GitHub, e-mail, Facebook, Twitter - napište kdykoli.",
+    "placeholders": { "name": "Vaše jméno", "email": "vas@email.cz", "message": "Vaše zpráva..." }
+  },
+  "footer": {
+    "credit": "Stránku pomohl vytvořit Claude ♥"
+  }
+}

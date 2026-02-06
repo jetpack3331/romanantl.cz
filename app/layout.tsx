@@ -1,24 +1,36 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Syne, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import { SetLocaleLang } from "./SetLocaleLang";
 
-const syne = Syne({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-syne",
+  variable: "--font-display",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const sourceSans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-dm-sans",
+  variable: "--font-sans",
   display: "swap",
 });
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://romanantl.cz";
 
 export const metadata: Metadata = {
-  title: "Roman Antl — Senior Frontend & Full Stack Developer",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Roman Antl - Full Stack Developer & Contractor",
+    template: "%s | Roman Antl",
+  },
   description:
-    "14+ let zkušeností. SatoshiLabs, freelance. React, TypeScript, Vue, blockchain. AI-aided design a tvorba. Valencian Community, Španělsko.",
+    "Full Stack Developer, React, TypeScript, Vue. AI product photography and ComfyUI. 14+ years experience. E-commerce, web3.",
+  openGraph: {
+    type: "website",
+    siteName: "Roman Antl",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -27,8 +39,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" className={`${syne.variable} ${dmSans.variable}`}>
+    <html lang="cs" className={`${plusJakarta.variable} ${sourceSans.variable}`}>
       <body className="font-sans antialiased">
+        <SetLocaleLang />
         <Script
           src="https://kit.fontawesome.com/b09d0cc083.js"
           strategy="afterInteractive"

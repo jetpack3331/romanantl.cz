@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "home": "Home",
+    "tvorba": "Work",
+    "about": "About me",
+    "employers": "Work experience",
+    "contact": "Contact"
+  },
+  "site": {
+    "name": "Roman Antl",
+    "title": "Full Stack Developer / Contractor",
+    "tagline": "14+ years of experience · freelancer"
+  },
+  "meta": {
+    "title": "Roman Antl - Full Stack Developer & AI Product Photography | Contractor",
+    "description": "Web and app development (React, TypeScript, Vue), AI product visuals and ComfyUI. 14+ years experience. E-commerce, web3. Get in touch for projects."
+  },
+  "hero": {
+    "left": {
+      "sections": [
+        {
+          "title": "Modern web and app development",
+          "description": "I build fast, scalable solutions that grow with your business. From solid architecture to secure deployment on a modern stack (React, TypeScript, Vue)."
+        },
+        {
+          "title": "AI visuals and digital production",
+          "description": "Skip expensive photo shoots. Using advanced workflows I generate photorealistic products on models and in lifestyle settings. You get professional visuals with 100% product fidelity."
+        },
+        {
+          "title": "Smart content scaling",
+          "description": "Maximise the potential of a single photo. From one source I create a full set of variants for your catalog. The ideal way to quickly and affordably fill your e-shop with varied content."
+        },
+        {
+          "title": "High-impact video content",
+          "description": "Short, dynamic videos optimised for social media and ad campaigns. I create content that not only looks great but demonstrably boosts conversions and holds attention."
+        }
+      ]
+    },
+    "right": {
+      "name": "Roman Antl",
+      "subtitle": "Senior Full-stack Developer & AI Specialist",
+      "bio": "I combine **14+ years** of development experience with the latest **AI** technologies. I've delivered demanding projects from crypto exchanges and **Web3** to complex e-commerce solutions.\n\nBy integrating **AI** into the workflow I don't just deliver code but efficient solutions that save your time and budget. Looking for a partner who can see around the corner? You're in the right place.",
+      "cta": "Get in touch",
+      "techStack": ["React", "Vue", "Node", "Python"]
+    }
+  },
+  "tvorba": {
+    "title": "Work",
+    "subtitle": "Sample product images and visuals made with AI and tools - people in clothing, product poses, reworking source photos with AI.",
+    "items": [
+      {
+        "id": "1",
+        "title": "Product images - Visual timer",
+        "description": "Generated images of a visual timer. Various positions and variants from one source.",
+        "imageText": "Visual timer",
+        "hasVariants": true,
+        "variantsText": "Variant 1 · 2 · 3 · 4"
+      }
+    ]
+  },
+  "employers": {
+    "title": "Who I've worked for",
+    "list": [
+      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (former)", "period": "2021 - 2025", "what": "Frontend for hardware crypto and wallet products." },
+      { "company": "Freelancer / various clients", "role": "Full Stack Developer", "period": "2011 - present", "what": "E-commerce, intranets, websites (Vue, React, PHP, PostgreSQL, AWS). Projects like Světdovolené.cz, Flexiana, Alza, Actum, QEST, System Nine." },
+      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Frontend development for tech platform." },
+      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Intranet applications and portals for employees and clients." },
+      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend and backend systems (Phalcon, Angular, React, Redux, Webpack)." },
+      { "company": "NAR marketing s.r.o.", "role": "Programmer", "period": "2010 - 2011", "what": "E-business and marketing processes in B2B." }
+    ]
+  },
+  "about": {
+    "title": "About me",
+    "experience": "Experience",
+    "skills": "Skills",
+    "experienceList": [
+      { "role": "Senior Frontend Developer (former)", "company": "SatoshiLabs", "period": "2021 - 2025" },
+      { "role": "Full Stack Developer", "company": "Freelancer", "period": "2011 - present" },
+      { "role": "Frontend Developer", "company": "StreamBee", "period": "2020 - 2021" },
+      { "role": "JavaScript Front-End Developer", "company": "Apollo Soft", "period": "2016 - 2017" },
+      { "role": "Frontend Developer", "company": "Bileto Technologies", "period": "2014 - 2016" },
+      { "role": "Programmer", "company": "NAR marketing s.r.o.", "period": "2010 - 2011" }
+    ],
+    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
+    "aiTitle": "AI",
+    "aiSkillsList": ["AI image generation", "AI video generation", "AI tools (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "Generative AI for product photography"]
+  },
+  "contact": {
+    "title": "Contact",
+    "formTitle": "Get in touch",
+    "formFields": { "name": "Name", "email": "Email", "message": "Message" },
+    "submitLabel": "Send",
+    "sending": "Sending…",
+    "successMessage": "Message sent. I'll get back to you soon.",
+    "errorMessage": "Something went wrong. Please try again or email me directly.",
+    "errors": {
+      "nameRequired": "Name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "messageRequired": "Message is required.",
+      "messageMin": "Message must be at least 10 characters."
+    },
+    "otherContacts": "Other contacts",
+    "otherContactsDesc": "LinkedIn, GitHub, email, Facebook, Twitter - reach out anytime.",
+    "placeholders": { "name": "Your name", "email": "you@example.com", "message": "Your message..." }
+  },
+  "footer": {
+    "credit": "Crafted with Claude ♥"
+  }
+}
