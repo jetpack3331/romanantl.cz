@@ -2,6 +2,7 @@
   "nav": {
     "home": "Domů",
     "tvorba": "Tvorba",
+    "pricing": "Ceník",
     "about": "O mně",
     "employers": "Pracovní zkušenosti",
     "contact": "Kontakt"
@@ -57,6 +58,57 @@
         "variantsText": "Varianta 1 · 2 · 3 · 4"
       }
     ]
+  },
+  "pricing": {
+    "title": "Ceník",
+    "packages": [
+      {
+        "name": "STARTER",
+        "price": "€79 / 1 999 Kč",
+        "features": [
+          "1 produkt, 3 lifestyle varianty (různé scény)",
+          "Odstranění pozadí + vložení do scény",
+          "Úprava světla a stínů tak, aby produkt vypadal přirozeně",
+          "Dodání do 48h"
+        ],
+        "idealFor": "Ideální pro: malé e-shopy, testování služby"
+      },
+      {
+        "name": "STANDARD",
+        "price": "€199 / 4 999 Kč",
+        "features": [
+          "1 produkt, 6 variant (3 lifestyle + 3 clean background variace)",
+          "Profesionální práce se světlem a zachování všech detailů produktu (texty, loga, textury)",
+          "Společně vybereme styl a cílovou skupinu, pro kterou fotky připravujeme",
+          "Dodání do 3 pracovních dnů",
+          "1 kolo úprav na základě vašeho feedbacku"
+        ],
+        "idealFor": "Ideální pro: Amazon sellers, produktové stránky"
+      },
+      {
+        "name": "PREMIUM",
+        "price": "€449 / 11 499 Kč",
+        "features": [
+          "Až 3 produkty, 5 variant na produkt (15 obrázků celkem)",
+          "Jednotný vizuální styl napříč všemi produkty",
+          "Fotky do e-shopu + na sociální sítě (čtverec, na výšku, na šířku)",
+          "Před začátkem práce vám pošlu návrhy stylu ke schválení",
+          "Dodání do 5 pracovních dnů",
+          "2 kola úprav"
+        ],
+        "idealFor": "Ideální pro: e-commerce značky, launch nových produktů"
+      }
+    ],
+    "retainer": {
+      "name": "Měsíční retainer",
+      "price": "od €799 / 19 999 Kč měsíčně",
+      "features": [
+        "Až 10 produktů měsíčně",
+        "Přednostní zpracování",
+        "Průběžné úpravy a doplňování dle potřeby"
+      ],
+      "idealFor": "Ideální pro: e-shopy s pravidelným novým zbožím"
+    }
   },
   "employers": {
     "title": "Pro koho jsem pracoval",

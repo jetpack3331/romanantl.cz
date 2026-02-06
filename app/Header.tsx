@@ -27,6 +27,12 @@ export function Header({ locale, messages }: HeaderProps) {
             {nav.tvorba}
           </a>
           <a
+            href="#pricing"
+            className="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent dark:text-pastel-cream dark:hover:text-pastel-dark-accent"
+          >
+            {nav.pricing}
+          </a>
+          <a
             href="#about"
             className="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent dark:text-pastel-cream dark:hover:text-pastel-dark-accent"
           >

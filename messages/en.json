@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "tvorba": "Work",
+    "pricing": "Pricing",
     "about": "About me",
     "employers": "Work experience",
     "contact": "Contact"
@@ -57,6 +58,57 @@
         "variantsText": "Variant 1 · 2 · 3 · 4"
       }
     ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "packages": [
+      {
+        "name": "STARTER",
+        "price": "€79",
+        "features": [
+          "1 product, 3 lifestyle variants (different scenes)",
+          "Background removal + placement into scene",
+          "Light and shadow adjustment so the product looks natural",
+          "Delivery within 48h"
+        ],
+        "idealFor": "Ideal for: small e-shops, testing the service"
+      },
+      {
+        "name": "STANDARD",
+        "price": "€199",
+        "features": [
+          "1 product, 6 variants (3 lifestyle + 3 clean background variations)",
+          "Professional lighting work and preservation of all product details (text, logos, textures)",
+          "Together we choose the style and target audience for the photos",
+          "Delivery within 3 business days",
+          "1 round of edits based on your feedback"
+        ],
+        "idealFor": "Ideal for: Amazon sellers, product pages"
+      },
+      {
+        "name": "PREMIUM",
+        "price": "€449",
+        "features": [
+          "Up to 3 products, 5 variants per product (15 images total)",
+          "Consistent visual style across all products",
+          "Photos for e-shop + social media (square, portrait, landscape)",
+          "Before starting I send you style proposals for approval",
+          "Delivery within 5 business days",
+          "2 rounds of edits"
+        ],
+        "idealFor": "Ideal for: e-commerce brands, new product launches"
+      }
+    ],
+    "retainer": {
+      "name": "Monthly retainer",
+      "price": "from €799/month",
+      "features": [
+        "Up to 10 products per month",
+        "Priority processing",
+        "Ongoing edits and additions as needed"
+      ],
+      "idealFor": "Ideal for: e-shops with regular new inventory"
+    }
   },
   "employers": {
     "title": "Who I've worked for",

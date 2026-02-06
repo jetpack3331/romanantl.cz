@@ -196,6 +196,56 @@ export default async function LocalePage({ params }: Props) {
           </ul>
         </section>
 
+        {/* Ceník / Pricing */}
+        <section id="pricing" className="mt-16 scroll-mt-8">
+          <h2 className="font-display text-2xl font-bold text-pastel-dark dark:text-pastel-cream">
+            {t.pricing.title}
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {t.pricing.packages.map((pkg, idx) => {
+              const styles = [
+                { bg: "bg-pricing-starter", text: "text-pastel-dark", accent: "text-pastel-dark/80" },
+                { bg: "bg-pricing-standard", text: "text-pastel-dark", accent: "text-pastel-dark/80" },
+                { bg: "bg-pricing-premium", text: "text-pastel-dark", accent: "text-pastel-dark/80" },
+              ][idx] ?? { bg: "bg-pricing-starter", text: "text-pastel-dark", accent: "text-pastel-dark/80" };
+              return (
+                <div key={pkg.name} className={`card p-5 flex flex-col ${styles.bg} border-0 shadow-soft`}>
+                  <h3 className={`font-display text-lg font-bold ${styles.text}`}>
+                    {pkg.name}
+                  </h3>
+                  <p className={`mt-2 text-xl font-bold ${styles.accent}`}>
+                    {pkg.price}
+                  </p>
+                  <ul className={`mt-4 flex-1 space-y-2 text-sm ${styles.text} opacity-90`}>
+                    {pkg.features.map((f, i) => (
+                      <li key={i} className="flex gap-2">
+                        <span className={`shrink-0 ${styles.accent}`}>·</span>
+                        <span className={i === 0 ? "font-semibold" : ""}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-10 card p-6 bg-pricing-retainer border-0 shadow-soft text-pastel-cream">
+            <h3 className="font-display text-lg font-bold">
+              {t.pricing.retainer.name}
+            </h3>
+            <p className="mt-2 text-xl font-bold text-pastel-cream/95">
+              {t.pricing.retainer.price}
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-pastel-cream/90">
+              {t.pricing.retainer.features.map((f, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="text-pastel-cream/80 shrink-0">·</span>
+                  <span className={i === 0 ? "font-semibold" : ""}>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* O mně — bez doporučení */}
         <section id="about" className="mt-16 scroll-mt-8">
           <h2 className="font-display text-2xl font-bold text-pastel-dark dark:text-pastel-cream">

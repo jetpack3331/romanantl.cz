@@ -27,6 +27,12 @@ const config: Config = {
           "dark-secondary": "#2A3324",
           "dark-accent": "#8FA87A",
         },
+        pricing: {
+          starter: "#E2E8ED",
+          standard: "#E2EDE2",
+          premium: "#EDE2E2",
+          retainer: "#4A6B5A",
+        },
       },
       borderRadius: {
         card: "1rem",
