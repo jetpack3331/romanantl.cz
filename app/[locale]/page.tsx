@@ -118,29 +118,87 @@ export default async function LocalePage({ params }: Props) {
             }>).map((item) => (
               <li key={item.id}>
                 <article className="card overflow-hidden p-0">
+                  {item.id === "dress" ? (
+                    <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-3 md:gap-6">
+                      <div className="space-y-4 md:col-span-1">
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent">
+                          {t.tvorba.originalLabel}
+                        </p>
+                        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+                          <Image
+                            src="/portfolio/dress/original.jpg"
+                            alt={`${item.imageText} — source 1`}
+                            width={300}
+                            height={400}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+                          <Image
+                            src="/portfolio/dress/original_2.jpg"
+                            alt={`${item.imageText} — source 2`}
+                            width={300}
+                            height={400}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      <div className="md:col-span-2">
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                          {t.tvorba.productPhotosLabel}
+                        </p>
+                        <div className="grid grid-cols-2 gap-2">
+                        {(["1.png", "2.png", "3.jpeg", "4.png"] as const).map((file) => (
+                          <div key={file} className="relative aspect-[3/4] overflow-hidden rounded-lg">
+                            <Image
+                              src={`/portfolio/dress/${file}`}
+                              alt={`${item.imageText} ${file}`}
+                              width={300}
+                              height={400}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                        ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
                   <div className={`grid gap-4 p-5 ${item.hasVariants ? "md:grid-cols-5 md:gap-6" : "md:grid-cols-2"}`}>
-                    <div className="relative aspect-square w-full md:col-span-2">
-                      {item.id === "1" ? (
-                        <Image
-                          src="/portfolio/desk-timer/original.jpg"
-                          alt={item.imageText}
-                          width={400}
-                          height={400}
-                          className="h-full w-full rounded-lg object-cover"
-                        />
-                      ) : (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img
-                            src={placeholdUrl(400, 400, item.imageText)}
-                            alt=""
+                    <div className="w-full md:col-span-2">
+                      {item.id === "1" && (
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                          {t.tvorba.originalLabel}
+                        </p>
+                      )}
+                      <div className="relative aspect-square w-full">
+                        {item.id === "1" ? (
+                          <Image
+                            src="/portfolio/desk-timer/original.jpg"
+                            alt={item.imageText}
                             width={400}
                             height={400}
                             className="h-full w-full rounded-lg object-cover"
                           />
-                      )}
+                        ) : (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                              src={placeholdUrl(400, 400, item.imageText)}
+                              alt=""
+                              width={400}
+                              height={400}
+                              className="h-full w-full rounded-lg object-cover"
+                            />
+                        )}
+                      </div>
                     </div>
                     {item.hasVariants ? (
-                      <div className="grid grid-cols-4 gap-2 md:col-span-3 md:grid-cols-2">
+                      <div className="md:col-span-3">
+                        {item.id === "1" && (
+                          <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                            {t.tvorba.productPhotosLabel}
+                          </p>
+                        )}
+                        <div className="grid grid-cols-4 gap-2 md:grid-cols-2">
                         {[1, 2, 3, 4].map((i) => (
                           <div key={i} className="relative aspect-square">
                             {item.id === "1" ? (
@@ -163,6 +221,7 @@ export default async function LocalePage({ params }: Props) {
                             )}
                           </div>
                         ))}
+                        </div>
                       </div>
                     ) : (
                       <div className="flex flex-col justify-center">
@@ -175,6 +234,7 @@ export default async function LocalePage({ params }: Props) {
                       </div>
                     )}
                   </div>
+                  )}
                   {item.hasVariants && (
                     <div className="border-t border-pastel-sage/60 dark:border-pastel-dark-secondary/60 px-5 py-4">
                       <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">

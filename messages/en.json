@@ -48,14 +48,24 @@
   "tvorba": {
     "title": "Work",
     "subtitle": "Sample product images and visuals made with AI and tools - people in clothing, product poses, reworking source photos with AI.",
+    "originalLabel": "Original",
+    "productPhotosLabel": "Created product photos",
     "items": [
+      {
+        "id": "dress",
+        "title": "Women's dress - from Marketplace to e-shop",
+        "description": "Source: photos from Facebook Marketplace. Turned into quality product photos in a consistent style - no expensive photo shoot.",
+        "imageText": "Women's dress",
+        "hasVariants": true,
+        "variantsText": "2 sources → 4 variants"
+      },
       {
         "id": "1",
         "title": "Product images - Visual timer",
-        "description": "Generated images of a visual timer. Various positions and variants from one source.",
+        "description": "Source: Amazon. Generated images of a visual timer. Various positions and variants from one source.",
         "imageText": "Visual timer",
         "hasVariants": true,
-        "variantsText": "Variant 1 · 2 · 3 · 4"
+        "variantsText": "1 source → 4 variants"
       }
     ]
   },

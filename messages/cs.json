@@ -48,14 +48,24 @@
   "tvorba": {
     "title": "Tvorba",
     "subtitle": "Ukázky produktových obrázků a vizuálů vytvořených s pomocí AI a nástrojů - lidé v oblečení, různé pozice produktů, přepracování zdrojových fotek pomocí AI.",
+    "originalLabel": "Originál",
+    "productPhotosLabel": "Vytvořené produktové fotografie",
     "items": [
+      {
+        "id": "dress",
+        "title": "Dámské šaty - z Marketplace do e-shopu",
+        "description": "Zdroj: fotky z Facebook Marketplace. Z nich vznikly kvalitní produktové fotografie v jednotném stylu - bez nákladného focení.",
+        "imageText": "Dámské šaty",
+        "hasVariants": true,
+        "variantsText": "2 zdroje → 4 varianty"
+      },
       {
         "id": "1",
         "title": "Produktové obrázky - vizuální časovač",
-        "description": "Vygenerované obrázky vizuálního časovače. Různé pozice a varianty z jednoho zdroje.",
+        "description": "Zdroj: Amazon. Vygenerované obrázky vizuálního časovače. Různé pozice a varianty z jednoho zdroje.",
         "imageText": "Vizuální časovač",
         "hasVariants": true,
-        "variantsText": "Varianta 1 · 2 · 3 · 4"
+        "variantsText": "1 zdroj → 4 varianty"
       }
     ]
   },
