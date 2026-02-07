@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import Script from "next/script";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { z } from "zod";
+
+const TURNSTILE_SCRIPT = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 const contactSchema = z.object({
   name: z.string().min(1, "nameRequired"),
@@ -29,9 +33,46 @@ type ContactFormProps = {
   messages: ContactMessages;
 };
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: HTMLElement, options: { sitekey: string; callback: (token: string) => void; "error-callback"?: () => void; size?: string }) => string;
+      remove: (widgetId: string) => void;
+      reset: (widgetId: string) => void;
+    };
+  }
+}
+
 export function ContactForm({ messages }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const turnstileTokenRef = useRef<string>("");
+  const turnstileWidgetIdRef = useRef<string | null>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+
+  const onTurnstileSuccess = useCallback((token: string) => {
+    turnstileTokenRef.current = token;
+  }, []);
+
+  useEffect(() => {
+    if (!turnstileReady || !SITE_KEY || !turnstileContainerRef.current || !window.turnstile) return;
+    const id = window.turnstile.render(turnstileContainerRef.current, {
+      sitekey: SITE_KEY,
+      callback: onTurnstileSuccess,
+      "error-callback": () => {
+        turnstileTokenRef.current = "";
+      },
+      size: "invisible",
+    });
+    turnstileWidgetIdRef.current = id;
+    return () => {
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+    };
+  }, [turnstileReady, onTurnstileSuccess]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -55,26 +96,49 @@ export function ContactForm({ messages }: ContactFormProps) {
       setStatus("error");
       return;
     }
+
+    const token = turnstileTokenRef.current;
+    if (!token && SITE_KEY) {
+      setFieldErrors({ form: messages.errorMessage });
+      setStatus("error");
+      return;
+    }
+
     setFieldErrors({});
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, turnstileToken: token || undefined }),
       });
-      if (!res.ok) throw new Error("Send failed");
+      const dataRes = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(typeof dataRes.error === "string" ? dataRes.error : "Send failed");
+      }
       setStatus("success");
       form.reset();
-    } catch {
+      turnstileTokenRef.current = "";
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetIdRef.current);
+      }
+    } catch (err) {
+      console.error(err);
       setStatus("error");
-      setFieldErrors({ form: messages.errorMessage });
+      setFieldErrors({ form: err instanceof Error ? err.message : messages.errorMessage });
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
-      <label className="flex flex-col gap-1">
+    <>
+      <Script
+        src={TURNSTILE_SCRIPT}
+        strategy="afterInteractive"
+        onLoad={() => setTurnstileReady(true)}
+      />
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+        <div ref={turnstileContainerRef} className="min-h-0 overflow-hidden" aria-hidden="true" />
+        <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-pastel-dark dark:text-pastel-cream">
           {messages.formFields.name}
         </span>
@@ -131,5 +195,6 @@ export function ContactForm({ messages }: ContactFormProps) {
         <p className="text-sm text-red-600 dark:text-red-400">{fieldErrors.form}</p>
       )}
     </form>
+    </>
   );
 }

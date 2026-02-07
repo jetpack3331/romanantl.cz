@@ -1,62 +1,113 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const MAX_NAME_LENGTH = 200;
+const MAX_MESSAGE_LENGTH = 5000;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const FROM = "Roman Antl Portfolio <onboarding@resend.dev>";
 const TO = process.env.CONTACT_EMAIL ?? "romcaantl@gmail.com";
 
 export async function POST(request: Request) {
-  if (!process.env.RESEND_API_KEY) {
+  if (!process.env.SENDER_EMAIL || !process.env.SENDER_PASSWORD) {
     return NextResponse.json(
-      { error: "E-mail není nakonfigurován (RESEND_API_KEY)." },
+      { error: "E-mail not configured" },
       { status: 503 }
     );
   }
 
-  let body: { name?: string; email?: string; message?: string };
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+
+  let body: { name?: string; email?: string; message?: string; turnstileToken?: string };
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Neplatný JSON." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
+
+  const turnstileToken = typeof body.turnstileToken === "string" ? body.turnstileToken.trim() : "";
+
+  if (turnstileSecret) {
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: "Verification required" },
+        { status: 400 }
+      );
+    }
+    const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: turnstileSecret,
+        response: turnstileToken,
+      }),
+    });
+    const verifyData = (await verifyRes.json()) as { success?: boolean };
+    if (!verifyData.success) {
+      return NextResponse.json(
+        { error: "Verification failed" },
+        { status: 400 }
+      );
+    }
   }
 
   const name = typeof body.name === "string" ? body.name.trim() : "";
-  const email = typeof body.email === "string" ? body.email.trim() : "";
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const message = typeof body.message === "string" ? body.message.trim() : "";
 
   if (!name || !email || !message) {
     return NextResponse.json(
-      { error: "Vyplňte jméno, e-mail a zprávu." },
+      { error: "Name, email and message are required" },
       { status: 400 }
     );
   }
 
-  if (message.length > 5000) {
+  if (name.length > MAX_NAME_LENGTH) {
     return NextResponse.json(
-      { error: "Zpráva je příliš dlouhá." },
+      { error: `Name must be at most ${MAX_NAME_LENGTH} characters` },
       { status: 400 }
     );
   }
+
+  if (!EMAIL_REGEX.test(email)) {
+    return NextResponse.json(
+      { error: "Invalid email address" },
+      { status: 400 }
+    );
+  }
+
+  if (message.length > MAX_MESSAGE_LENGTH) {
+    return NextResponse.json(
+      { error: `Message must be at most ${MAX_MESSAGE_LENGTH} characters` },
+      { status: 400 }
+    );
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.SENDER_EMAIL,
+      pass: process.env.SENDER_PASSWORD,
+    },
+  });
+
+  const from = `Roman Antl Portfolio <${process.env.SENDER_EMAIL}>`;
+  const subjectName = name.replace(/[\r\n]+/g, " ").slice(0, 100);
+  const subject = `Contact from romanantl.cz: ${subjectName}`;
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: FROM,
+    await transporter.sendMail({
+      from,
       to: TO,
       replyTo: email,
-      subject: `Kontakt z webu: ${name}`,
-      text: `Od: ${name} <${email}>\n\n${message}`,
-      html: `<p><strong>Od:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p><pre>${escapeHtml(message)}</pre>`,
+      subject,
+      text: `From: ${name} <${email}>\n\n${message}`,
+      html: `<p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p><pre>${escapeHtml(message)}</pre>`,
     });
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 502 });
-    }
-
-    return NextResponse.json({ ok: true, id: data?.id });
-  } catch (err) {
+    return NextResponse.json({ ok: true });
+  } catch {
     return NextResponse.json(
-      { error: "Nepodařilo se odeslat e-mail." },
+      { error: "Failed to send e-mail" },
       { status: 500 }
     );
   }

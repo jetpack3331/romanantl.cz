@@ -1,5 +1,5 @@
 # Lokální vývoj v Dockeru. Produkce = Vercel (bez Dockeru).
-# Pro Resend a kontaktní e-mail vytvoř v kořeni soubor .env s RESEND_API_KEY a CONTACT_EMAIL.
+# Pro odesílání e-mailů z kontaktního formuláře vytvoř v kořeni soubor .env se SENDER_EMAIL, SENDER_PASSWORD a volitelně CONTACT_EMAIL.
 services:
   web:
     build: .
