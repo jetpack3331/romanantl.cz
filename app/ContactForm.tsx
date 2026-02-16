@@ -139,7 +139,7 @@ export function ContactForm({ messages }: ContactFormProps) {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
         <div ref={turnstileContainerRef} className="min-h-0 overflow-hidden" aria-hidden="true" />
         <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-cream">
+        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
           {messages.formFields.name}
         </span>
         <input
@@ -154,7 +154,7 @@ export function ContactForm({ messages }: ContactFormProps) {
         )}
       </label>
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-cream">
+        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
           {messages.formFields.email}
         </span>
         <input
@@ -169,7 +169,7 @@ export function ContactForm({ messages }: ContactFormProps) {
         )}
       </label>
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-cream">
+        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
           {messages.formFields.message}
         </span>
         <textarea
@@ -187,7 +187,7 @@ export function ContactForm({ messages }: ContactFormProps) {
         {status === "loading" ? messages.sending : messages.submitLabel}
       </button>
       {status === "success" && (
-        <p className="text-sm text-pastel-accent dark:text-pastel-dark-accent">
+        <p className="text-sm text-pastel-accent dark:text-pastel-dark">
           {messages.successMessage}
         </p>
       )}

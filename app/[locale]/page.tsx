@@ -74,7 +74,7 @@ export default async function LocalePage({ params }: Props) {
             <h2 className="font-display mt-5 text-xl font-bold text-pastel-dark dark:text-pastel-cream md:text-2xl">
               {(t.hero.right as { name: string }).name}
             </h2>
-            <p className="mt-1 text-xs font-medium text-pastel-accent dark:text-pastel-dark-accent uppercase tracking-wide">
+            <p className="mt-1 text-xs font-medium text-pastel-accent dark:text-pastel-dark uppercase tracking-wide">
               {(t.hero.right as { subtitle: string }).subtitle}
             </p>
             <div className="mt-4 text-left w-full">
@@ -121,7 +121,7 @@ export default async function LocalePage({ params }: Props) {
                   {item.id === "dress" ? (
                     <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-3 md:gap-6">
                       <div className="space-y-4 md:col-span-1">
-                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent">
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark">
                           {t.tvorba.originalLabel}
                         </p>
                         <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
@@ -144,7 +144,7 @@ export default async function LocalePage({ params }: Props) {
                         </div>
                       </div>
                       <div className="md:col-span-2">
-                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark mb-2">
                           {t.tvorba.productPhotosLabel}
                         </p>
                         <div className="grid grid-cols-2 gap-2">
@@ -165,8 +165,8 @@ export default async function LocalePage({ params }: Props) {
                   ) : (
                   <div className={`grid gap-4 p-5 ${item.hasVariants ? "md:grid-cols-5 md:gap-6" : "md:grid-cols-2"}`}>
                     <div className="w-full md:col-span-2">
-                      {item.id === "1" && (
-                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                      {(item.id === "1" || item.id === "parfem") && (
+                        <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark mb-2">
                           {t.tvorba.originalLabel}
                         </p>
                       )}
@@ -174,6 +174,14 @@ export default async function LocalePage({ params }: Props) {
                         {item.id === "1" ? (
                           <Image
                             src="/portfolio/desk-timer/original.jpg"
+                            alt={item.imageText}
+                            width={400}
+                            height={400}
+                            className="h-full w-full rounded-lg object-cover"
+                          />
+                        ) : item.id === "parfem" ? (
+                          <Image
+                            src="/portfolio/parfem/optimized/original.jpg"
                             alt={item.imageText}
                             width={400}
                             height={400}
@@ -193,8 +201,8 @@ export default async function LocalePage({ params }: Props) {
                     </div>
                     {item.hasVariants ? (
                       <div className="md:col-span-3">
-                        {item.id === "1" && (
-                          <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark-accent mb-2">
+                        {(item.id === "1" || item.id === "parfem") && (
+                          <p className="text-sm font-semibold text-pastel-accent dark:text-pastel-dark mb-2">
                             {t.tvorba.productPhotosLabel}
                           </p>
                         )}
@@ -204,6 +212,14 @@ export default async function LocalePage({ params }: Props) {
                             {item.id === "1" ? (
                               <Image
                                 src={`/portfolio/desk-timer/${i}.png`}
+                                alt={`${item.imageText} ${i}`}
+                                width={200}
+                                height={200}
+                                className="h-full w-full rounded-lg object-cover"
+                              />
+                            ) : item.id === "parfem" ? (
+                              <Image
+                                src={`/portfolio/parfem/optimized/${i}.jpg`}
                                 alt={`${item.imageText} ${i}`}
                                 width={200}
                                 height={200}
@@ -225,10 +241,10 @@ export default async function LocalePage({ params }: Props) {
                       </div>
                     ) : (
                       <div className="flex flex-col justify-center">
-                        <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+                        <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+                        <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                           {item.description}
                         </p>
                       </div>
@@ -237,14 +253,14 @@ export default async function LocalePage({ params }: Props) {
                   )}
                   {item.hasVariants && (
                     <div className="border-t border-pastel-sage/60 dark:border-pastel-dark-secondary/60 px-5 py-4">
-                      <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+                      <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                         {item.title}
                       </h3>
-                      <p className="mt-1 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+                      <p className="mt-1 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                         {item.description}
                       </p>
                       {item.variantsText && (
-                        <p className="mt-2 text-xs text-pastel-accent dark:text-pastel-dark-accent">
+                        <p className="mt-2 text-xs text-pastel-accent dark:text-pastel-dark">
                           {item.variantsText}
                         </p>
                       )}
@@ -313,19 +329,19 @@ export default async function LocalePage({ params }: Props) {
           </h2>
           <div className="mt-8 grid gap-8 md:grid-cols-2">
             <div className="card p-5">
-              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                 {t.about.experience}
               </h3>
-              <ul className="mt-3 space-y-2 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+              <ul className="mt-3 space-y-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                 {(t.about.experienceList as Array<{ role: string; company: string; period: string }>).map((item, i) => (
                   <li key={i}>
-                    <span className="font-medium text-pastel-dark dark:text-pastel-cream">
+                    <span className="font-medium text-pastel-dark dark:text-pastel-dark">
                       {item.role}
                     </span>
                     {" · "}
                     <span>{item.company}</span>
                     {" · "}
-                    <span className="text-pastel-accent dark:text-pastel-dark-accent">
+                    <span className="text-pastel-accent dark:text-pastel-dark">
                       {item.period}
                     </span>
                   </li>
@@ -333,18 +349,18 @@ export default async function LocalePage({ params }: Props) {
               </ul>
             </div>
             <div className="card p-5">
-              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                 {t.about.skills}
               </h3>
-              <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+              <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                 {(t.about.skillsList as string[]).join(", ")}
               </p>
             </div>
             <div className="card p-5">
-              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                 {t.about.aiTitle}
               </h3>
-              <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+              <p className="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                 {(t.about.aiSkillsList as string[]).join(", ")}
               </p>
             </div>
@@ -360,17 +376,17 @@ export default async function LocalePage({ params }: Props) {
             {(t.employers.list as Array<{ company: string; role: string; period: string; what: string }>).map((item, i) => (
               <li key={i} className="card p-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+                  <span className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                     {item.company}
                   </span>
-                  <span className="text-sm text-pastel-accent dark:text-pastel-dark-accent">
+                  <span className="text-sm text-pastel-accent dark:text-pastel-dark">
                     {item.period}
                   </span>
                 </div>
-                <p className="mt-1 text-sm font-medium text-pastel-dark/90 dark:text-pastel-cream/90">
+                <p className="mt-1 text-sm font-medium text-pastel-dark/90 dark:text-pastel-dark/90">
                   {item.role}
                 </p>
-                <p className="mt-2 text-sm text-pastel-dark/75 dark:text-pastel-cream/75">
+                <p className="mt-2 text-sm text-pastel-dark/75 dark:text-pastel-dark/75">
                   {item.what}
                 </p>
               </li>
@@ -385,7 +401,7 @@ export default async function LocalePage({ params }: Props) {
           </h2>
           <div className="mt-8 grid gap-10 md:grid-cols-2">
             <div className="card p-6">
-              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                 {t.contact.formTitle}
               </h3>
               <div className="mt-4">
@@ -393,7 +409,7 @@ export default async function LocalePage({ params }: Props) {
               </div>
             </div>
             <div className="card p-6">
-              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-cream">
+              <h3 className="font-display font-bold text-pastel-dark dark:text-pastel-dark">
                 {t.contact.otherContacts}
               </h3>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -411,7 +427,7 @@ export default async function LocalePage({ params }: Props) {
                   </a>
                 ))}
               </div>
-              <p className="mt-4 text-sm text-pastel-dark/80 dark:text-pastel-cream/80">
+              <p className="mt-4 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
                 {t.contact.otherContactsDesc}
               </p>
             </div>

@@ -66,6 +66,14 @@
         "imageText": "Vizuální časovač",
         "hasVariants": true,
         "variantsText": "1 zdroj → 4 varianty"
+      },
+      {
+        "id": "parfem",
+        "title": "Produktové obrázky - parfém",
+        "description": "Zdroj: originální produktová fotografie. Vygenerované varianty parfému v různých pozicích.",
+        "imageText": "Parfém",
+        "hasVariants": true,
+        "variantsText": "1 zdroj → 4 varianty"
       }
     ]
   },

@@ -66,6 +66,14 @@
         "imageText": "Visual timer",
         "hasVariants": true,
         "variantsText": "1 source → 4 variants"
+      },
+      {
+        "id": "parfem",
+        "title": "Product images - Perfume",
+        "description": "Source: original product photo. Generated variants of the perfume in different positions.",
+        "imageText": "Perfume",
+        "hasVariants": true,
+        "variantsText": "1 source → 4 variants"
       }
     ]
   },
