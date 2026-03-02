@@ -7,6 +7,10 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+function placeholdUrl(w: number, h: number, text: string) {
+  return `https://placehold.co/${w}x${h}/D4C8BC/B89868?text=${encodeURIComponent(text)}`;
+}
+
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://romanantl.cz";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
