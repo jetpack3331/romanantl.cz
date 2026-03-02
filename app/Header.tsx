@@ -52,24 +52,24 @@ export function Header({ locale, messages }: HeaderProps) {
           >
             {nav.pricing}
           </Link>
-          <a
-            href="/#about"
+          <Link
+            href={locale === "cs" ? "/#about" : `/${locale}#about`}
             className="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent dark:text-pastel-cream dark:hover:text-pastel-dark-accent"
           >
             {nav.about}
-          </a>
-          <a
-            href="/#employers"
+          </Link>
+          <Link
+            href={locale === "cs" ? "/#employers" : `/${locale}#employers`}
             className="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent dark:text-pastel-cream dark:hover:text-pastel-dark-accent"
           >
             {nav.employers}
-          </a>
-          <a
-            href="/#contact"
+          </Link>
+          <Link
+            href={locale === "cs" ? "/#contact" : `/${locale}#contact`}
             className="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent dark:text-pastel-cream dark:hover:text-pastel-dark-accent"
           >
             {nav.contact}
-          </a>
+          </Link>
         </nav>
         <div className="flex items-center gap-1" role="group" aria-label="Jazyk / Language">
           <Link
