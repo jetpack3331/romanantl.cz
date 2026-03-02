@@ -13,8 +13,12 @@
     "tagline": "14+ years of experience · freelancer"
   },
   "meta": {
-    "title": "Roman Antl - Full Stack Developer & AI Product Photography | Contractor",
-    "description": "Web and app development (React, TypeScript, Vue), AI product visuals and ComfyUI. 14+ years experience. E-commerce, web3. Get in touch for projects."
+    "title": "Roman Antl - Full Stack Developer | Contractor",
+    "description": "Web and app development (React, TypeScript, Vue). 14+ years of experience. E-commerce, web3. Get in touch for projects."
+  },
+  "aiMeta": {
+    "title": "AI product photography, video and avatars | Roman Antl",
+    "description": "Photorealistic product photos, lifestyle visuals, short videos and AI avatars. An efficient alternative to expensive photo shoots – from a single photo I create a full set of assets for your shop and campaigns."
   },
   "hero": {
     "left": {
@@ -24,19 +28,24 @@
           "description": "I build fast, scalable solutions that grow with your business. From solid architecture to secure deployment on a modern stack (React, TypeScript, Vue)."
         },
         {
-          "title": "AI visuals and digital production",
-          "description": "Skip expensive photo shoots. Using advanced workflows I generate photorealistic products on models and in lifestyle settings. You get professional visuals with 100% product fidelity."
-        },
-        {
           "title": "Smart content scaling",
           "description": "Maximise the potential of a single photo. From one source I create a full set of variants for your catalog. The ideal way to quickly and affordably fill your e-shop with varied content."
         },
         {
-          "title": "High-impact video content",
-          "description": "Short, dynamic videos optimised for social media and ad campaigns. I create content that not only looks great but demonstrably boosts conversions and holds attention."
+          "title": "AI visuals, video and avatars",
+          "description": "Skip expensive photo shoots. With AI I create photorealistic product visuals, short videos and AI avatars that follow your brand style. See more examples in the AI work section."
         }
       ]
     },
+  "aiHero": {
+    "title": "AI product photography, video and avatars",
+    "description": "With AI I can turn a single source photo into a full set of high‑quality product images, videos and avatars. Ideal for e‑shops that want to scale content without costly photo shoots.",
+    "subtitle": "I focus on preserving product fidelity – colours, shapes, logos and copy stay consistent across all variants."
+  },
+  "aiAvatars": {
+    "title": "AI avatars and characters",
+    "description": "I generate consistent AI avatars and characters for campaigns, social media and presentations. A unified look across visuals helps build a recognisable brand without traditional photo sessions."
+  },
     "right": {
       "name": "Roman Antl",
       "subtitle": "Senior Full-stack Developer & AI Specialist",

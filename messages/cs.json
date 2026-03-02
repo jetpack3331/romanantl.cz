@@ -13,8 +13,12 @@
     "tagline": "14+ let zkušeností · na volné noze"
   },
   "meta": {
-    "title": "Roman Antl - Full Stack Developer & AI produktové fotografie | Contractor",
-    "description": "Vývoj webů a aplikací (React, TypeScript, Vue), AI produktové vizuály a ComfyUI. 14+ let zkušeností. E-commerce, web3. Kontakt pro projekty."
+    "title": "Roman Antl - Full Stack Developer | Contractor",
+    "description": "Vývoj webů a aplikací (React, TypeScript, Vue). 14+ let zkušeností. E-commerce, web3. Kontakt pro projekty."
+  },
+  "aiMeta": {
+    "title": "AI produktové fotografie, videa a avatary | Roman Antl",
+    "description": "Fotorealistické produktové fotografie, lifestyle vizuály, krátká videa a AI avatary. Efektivní alternativa k drahým focením – z jedné fotky vytvořím celý set použitelný pro e‑shop i kampaně."
   },
   "hero": {
     "left": {
@@ -24,19 +28,24 @@
           "description": "Stavím rychlá a škálovatelná řešení, která rostou s vaším byznysem. Od promyšlené architektury až po bezpečné nasazení na moderním stacku (React, TypeScript, Vue)."
         },
         {
-          "title": "AI vizuály a digitální produkce",
-          "description": "Vynechte nákladná focení. Pomocí pokročilých workflow generuji fotorealistické produkty na modelech i v lifestylovém prostředí. Získáte profesionální vizuál se 100% zachováním věrnosti produktu."
-        },
-        {
           "title": "Chytré škálování obsahu",
           "description": "Maximalizujte potenciál jediné fotografie. Z jednoho zdroje vytvořím kompletní sadu variant pro váš katalog. Ideální cesta, jak rychle a levně naplnit e-shop pestrým obsahem."
         },
         {
-          "title": "Video obsah s vysokým dopadem",
-          "description": "Krátká, dynamická videa optimalizovaná přímo pro sociální sítě a reklamní kampaně. Tvořím obsah, který nejen vypadá skvěle, ale prokazatelně zvyšuje konverze a drží pozornost."
+          "title": "AI vizuály, videa a avatary",
+          "description": "Vynechte nákladná focení. Pomocí AI vytvářím fotorealistické produktové vizuály, krátká videa a AI avatary, které drží vizuální styl značky. Více ukázek najdete v sekci AI tvorba."
         }
       ]
     },
+  "aiHero": {
+    "title": "AI produktové fotografie, videa a avatary",
+    "description": "Pomocí AI dokážu z jedné zdrojové fotky vytvořit sadu kvalitních produktových obrázků, videí i avatarů. Ideální pro e‑shopy, které chtějí škálovat obsah bez drahých focení.",
+    "subtitle": "Soustředím se na zachování věrnosti produktu – barvy, tvary, loga i texty zůstávají konzistentní napříč všemi variantami."
+  },
+  "aiAvatars": {
+    "title": "AI avatary a postavy",
+    "description": "Vygeneruji konzistentní AI avatary a postavy pro kampaně, sociální sítě nebo prezentační materiály. Jednotný vzhled napříč vizuály pomáhá budovat zapamatovatelnou značku bez potřeby klasického focení."
+  },
     "right": {
       "name": "Roman Antl",
       "subtitle": "Senior Full-stack Developer & AI Specialist",
