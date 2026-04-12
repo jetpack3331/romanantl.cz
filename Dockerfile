@@ -1,5 +1,5 @@
 # Local development image (hot reload via bind mount in docker-compose.dev.yml)
-FROM node:22-bookworm-slim AS development
+FROM node:24-bookworm-slim AS development
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ ENV PORT=3000
 CMD ["npm", "run", "dev"]
 
 # Production build
-FROM node:22-bookworm-slim AS builder
+FROM node:24-bookworm-slim AS builder
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ COPY . .
 RUN npm run build
 
 # Production runtime (Hetzner / self-hosted Docker)
-FROM node:22-bookworm-slim AS production
+FROM node:24-bookworm-slim AS production
 
 WORKDIR /app
 
