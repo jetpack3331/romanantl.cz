@@ -3,31 +3,41 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
+    "start": "node ./dist/server/entry.mjs",
+    "lint": "eslint .",
+    "check": "astro check",
     "check:web": "bash scripts/check-web.sh",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dead-code": "knip"
   },
   "dependencies": {
-    "next": "^15.0.0",
+    "@astrojs/node": "^9.5.5",
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.18.1",
+    "nodemailer": "^6.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "nodemailer": "^6.9.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.0.0",
+    "@astrojs/check": "^0.9.8",
     "@types/node": "^22.0.0",
+    "@types/nodemailer": "^6.4.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "knip": "^5.0.0",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.0.0",
-    "knip": "^5.0.0",
-    "@types/nodemailer": "^6.4.0"
+    "typescript-eslint": "^8.58.1",
+    "vitest": "^4.1.4"
   }
 }

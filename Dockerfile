@@ -1,15 +1,46 @@
-# Pouze pro lokální vývoj. Produkce běží na Vercelu (bez Dockeru).
-FROM node:20-alpine
+# Local development image (hot reload via bind mount in docker-compose.dev.yml)
+FROM node:20-bookworm-slim AS development
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
-# Zdroj se montuje z hostitele (docker-compose), takže next dev má hot reload
 EXPOSE 3000
-
-ENV NODE_ENV=development
+ENV HOST=0.0.0.0
 ENV PORT=3000
 
 CMD ["npm", "run", "dev"]
+
+# Production build
+FROM node:20-bookworm-slim AS builder
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Production runtime (Hetzner / self-hosted Docker)
+FROM node:20-bookworm-slim AS production
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=3000
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+COPY --from=builder /app/dist ./dist
+
+RUN chown -R node:node /app
+
+USER node
+
+EXPOSE 3000
+
+CMD ["node", "./dist/server/entry.mjs"]

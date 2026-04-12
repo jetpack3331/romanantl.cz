@@ -1,0 +1,76 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  lang: string;
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  ogLocale: string;
+  ogImageUrl: string;
+  alternateLanguages: Record<string, string>;
+  openGraphUrl: string;
+  siteName: string;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalUrl,
+  ogLocale,
+  ogImageUrl,
+  alternateLanguages,
+  openGraphUrl,
+  siteName,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonicalUrl} />
+    {Object.entries(alternateLanguages).map(([hreflang, href]) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:url" content={openGraphUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="format-detection" content="telephone=no, email=yes" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      is:inline
+      src="https://kit.fontawesome.com/b09d0cc083.js"
+      crossorigin="anonymous"
+      async></script>
+  </head>
+  <body class="font-sans antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-sans: "Source Sans 3", system-ui, sans-serif;
+  }
+</style>

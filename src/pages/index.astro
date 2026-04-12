@@ -1,0 +1,34 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import HomePage from "@/components/home/HomePage.astro";
+import { getMessages } from "@/lib/get-messages";
+import { locales } from "@/lib/i18n";
+import { getSiteBaseUrl } from "@/lib/site-url";
+
+const locale = "cs";
+const t = getMessages(locale);
+const base = getSiteBaseUrl();
+const canonical = base;
+const ogImageUrl = `${base}/profile_picture.jpeg`;
+const alternateLanguages = Object.fromEntries(
+  locales.map((loc) => [loc, loc === "cs" ? base : `${base}/${loc}`])
+);
+---
+
+<BaseLayout
+  lang="cs"
+  title={t.meta.title}
+  description={t.meta.description}
+  canonicalUrl={canonical}
+  ogLocale="cs_CZ"
+  ogImageUrl={ogImageUrl}
+  openGraphUrl={canonical}
+  siteName={t.site.name}
+  alternateLanguages={alternateLanguages}
+>
+  <Header locale={locale} messages={t} pathname="/" />
+  <HomePage locale={locale} messages={t} />
+</BaseLayout>

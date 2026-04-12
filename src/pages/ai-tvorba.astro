@@ -1,0 +1,37 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import AiTvorbaPage from "@/components/ai-tvorba/AiTvorbaPage.astro";
+import { getMessages } from "@/lib/get-messages";
+import { locales } from "@/lib/i18n";
+import { getSiteBaseUrl } from "@/lib/site-url";
+
+const locale = "cs";
+const t = getMessages(locale);
+const base = getSiteBaseUrl();
+const canonical = `${base}/ai-tvorba`;
+const ogImageUrl = `${base}/profile_picture.jpeg`;
+const alternateLanguages = Object.fromEntries(
+  locales.map((loc) => [
+    loc,
+    loc === "cs" ? `${base}/ai-tvorba` : `${base}/${loc}/ai-tvorba`,
+  ])
+);
+---
+
+<BaseLayout
+  lang="cs"
+  title={t.aiMeta.title}
+  description={t.aiMeta.description}
+  canonicalUrl={canonical}
+  ogLocale="cs_CZ"
+  ogImageUrl={ogImageUrl}
+  openGraphUrl={canonical}
+  siteName={t.site.name}
+  alternateLanguages={alternateLanguages}
+>
+  <Header locale={locale} messages={t} pathname="/ai-tvorba" />
+  <AiTvorbaPage messages={t} />
+</BaseLayout>

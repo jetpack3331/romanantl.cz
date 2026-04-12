@@ -1,21 +1,15 @@
-# Lokální vývoj v Dockeru. Produkce = Vercel (bez Dockeru).
-# Pro odesílání e-mailů z kontaktního formuláře vytvoř v kořeni soubor .env se SENDER_EMAIL, SENDER_PASSWORD a volitelně CONTACT_EMAIL.
+# Production stack for Docker on a VPS (e.g. Hetzner). Copy .env on the server and run: docker compose up -d --build
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
     ports:
       - "3000:3000"
     env_file:
       - .env
     environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: sh -c "npm install && npm run dev"
-    healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', r => { r.resume(); process.exit(r.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 15s
+      HOST: 0.0.0.0
+      PORT: 3000
+    restart: unless-stopped

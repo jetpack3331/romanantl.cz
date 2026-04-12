@@ -1,3 +1,4 @@
 {
-  "ignoreDependencies": ["eslint", "eslint-config-next"]
+  "entry": ["astro.config.mjs"],
+  "ignore": ["dist/**", ".astro/**"]
 }

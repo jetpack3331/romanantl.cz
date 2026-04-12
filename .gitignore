@@ -1,8 +1,11 @@
 .DS_Store
 node_modules/
 .next
+dist
+.astro
 out
 *.tsbuildinfo
 .env
 .env*.local
 .debug
+.vercel/output/

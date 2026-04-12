@@ -1,0 +1,28 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const className =
+  "text-sm text-pastel-dark/90 dark:text-pastel-cream/90 leading-relaxed";
+const strongClassName = "font-semibold text-pastel-dark dark:text-pastel-cream";
+const paragraphs = text.split(/\n\n+/);
+---
+
+{
+  paragraphs.map((paragraph, i) => {
+    const parts = paragraph.split(/\*\*([^*]+)\*\*/g);
+    return (
+      <p class:list={[i > 0 && "mt-3", className]}>
+        {parts.map((part, j) =>
+          j % 2 === 1 ? (
+            <strong class={strongClassName}>{part}</strong>
+          ) : (
+            part
+          )
+        )}
+      </p>
+    );
+  })
+}
