@@ -182,52 +182,52 @@ export function ContactForm({ messages }: ContactFormProps) {
         aria-hidden="true"
       />
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
+        <span className="text-sm font-medium text-pastel-dark">
           {messages.formFields.name}
         </span>
         <input
           type="text"
           name="name"
           disabled={status === "loading"}
-          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60 dark:border-pastel-dark-secondary dark:bg-pastel-dark-secondary dark:text-pastel-cream dark:placeholder:text-pastel-dark-accent/60"
+          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60"
           placeholder={messages.placeholders.name}
         />
         {fieldErrors.name && (
-          <p className="text-sm text-red-600 dark:text-red-400">
+          <p className="text-sm text-red-600">
             {fieldErrors.name}
           </p>
         )}
       </label>
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
+        <span className="text-sm font-medium text-pastel-dark">
           {messages.formFields.email}
         </span>
         <input
           type="email"
           name="email"
           disabled={status === "loading"}
-          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60 dark:border-pastel-dark-secondary dark:bg-pastel-dark-secondary dark:text-pastel-cream dark:placeholder:text-pastel-dark-accent/60"
+          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60"
           placeholder={messages.placeholders.email}
         />
         {fieldErrors.email && (
-          <p className="text-sm text-red-600 dark:text-red-400">
+          <p className="text-sm text-red-600">
             {fieldErrors.email}
           </p>
         )}
       </label>
       <label className="flex flex-col gap-1">
-        <span className="text-sm font-medium text-pastel-dark dark:text-pastel-dark">
+        <span className="text-sm font-medium text-pastel-dark">
           {messages.formFields.message}
         </span>
         <textarea
           name="message"
           rows={4}
           disabled={status === "loading"}
-          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60 dark:border-pastel-dark-secondary dark:bg-pastel-dark-secondary dark:text-pastel-cream dark:placeholder:text-pastel-dark-accent/60"
+          className="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2 text-pastel-dark placeholder:text-pastel-accent/60"
           placeholder={messages.placeholders.message}
         />
         {fieldErrors.message && (
-          <p className="text-sm text-red-600 dark:text-red-400">
+          <p className="text-sm text-red-600">
             {fieldErrors.message}
           </p>
         )}
@@ -240,12 +240,12 @@ export function ContactForm({ messages }: ContactFormProps) {
         {status === "loading" ? messages.sending : messages.submitLabel}
       </button>
       {status === "success" && (
-        <p className="text-sm text-pastel-accent dark:text-pastel-dark">
+        <p className="text-sm text-pastel-accent">
           {messages.successMessage}
         </p>
       )}
       {fieldErrors.form && (
-        <p className="text-sm text-red-600 dark:text-red-400">
+        <p className="text-sm text-red-600">
           {fieldErrors.form}
         </p>
       )}

@@ -39,17 +39,17 @@ const skillsList = t.about.skillsList as string[];
 const aiSkillsList = t.about.aiSkillsList as string[];
 ---
 
-<div class="min-h-screen bg-pastel-cream dark:bg-pastel-dark">
+<div class="min-h-screen bg-pastel-cream">
   <main class="mx-auto max-w-5xl px-6 py-10 md:py-14">
     <section class="grid gap-10 md:grid-cols-2 md:items-start md:gap-12">
       <div class="space-y-6">
         {
           sections.map((section) => (
             <div>
-              <h2 class="font-display text-lg font-bold text-pastel-dark dark:text-pastel-cream md:text-xl">
+              <h2 class="font-display text-lg font-bold text-pastel-dark md:text-xl">
                 {section.title}
               </h2>
-              <p class="mt-2 text-sm text-pastel-dark/90 dark:text-pastel-cream/90 leading-relaxed">
+              <p class="mt-2 text-sm text-pastel-dark/90 leading-relaxed">
                 {section.description}
                 {section.title.startsWith("AI ") && (
                   <>
@@ -60,7 +60,7 @@ const aiSkillsList = t.about.aiSkillsList as string[];
                           ? "/ai-tvorba"
                           : `/${locale}/ai-tvorba`
                       }
-                      class="font-semibold text-pastel-accent dark:text-pastel-accent underline-offset-4 hover:underline"
+                      class="font-semibold text-pastel-accent underline-offset-4 hover:underline"
                     >
                       {locale === "cs" ? "AI tvorba" : "AI work"}
                     </a>
@@ -72,7 +72,7 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           ))
         }
       </div>
-      <div class="rounded-card overflow-hidden bg-pastel-sand/60 dark:bg-pastel-dark-secondary/60 p-6 shadow-soft flex flex-col items-center text-center">
+      <div class="rounded-card overflow-hidden bg-pastel-sand/60 p-6 shadow-soft flex flex-col items-center text-center">
         <img
           alt={t.site.name}
           class="rounded-2xl w-48 h-48 md:w-56 md:h-56 object-cover object-top shadow-soft"
@@ -81,10 +81,10 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           height={224}
           fetchpriority="high"
         />
-        <h2 class="font-display mt-5 text-xl font-bold text-pastel-dark dark:text-pastel-cream md:text-2xl">
+        <h2 class="font-display mt-5 text-xl font-bold text-pastel-dark md:text-2xl">
           {heroRight.name}
         </h2>
-        <p class="mt-1 text-xs font-medium text-pastel-accent dark:text-pastel-dark uppercase tracking-wide">
+        <p class="mt-1 text-xs font-medium text-pastel-accent uppercase tracking-wide">
           {heroRight.subtitle}
         </p>
         <div class="mt-4 text-left w-full">
@@ -100,7 +100,7 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           {
             heroRight.techStack.map((tech) => (
               <span
-                class="rounded-full bg-pastel-sage/60 dark:bg-pastel-dark-secondary/80 px-3 py-1 text-xs font-medium text-pastel-dark/90 dark:text-pastel-cream/90"
+                class="rounded-full bg-pastel-sage/60 px-3 py-1 text-xs font-medium text-pastel-dark/90"
               >
                 {tech}
               </span>
@@ -111,25 +111,25 @@ const aiSkillsList = t.about.aiSkillsList as string[];
     </section>
 
     <section id="about" class="mt-16 scroll-mt-8">
-      <h2 class="font-display text-2xl font-bold text-pastel-dark dark:text-pastel-cream">
+      <h2 class="font-display text-2xl font-bold text-pastel-dark">
         {t.about.title}
       </h2>
       <div class="mt-8 grid gap-8 md:grid-cols-2">
         <div class="card p-5">
-          <h3 class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+          <h3 class="font-display font-bold text-pastel-dark">
             {t.about.experience}
           </h3>
-          <ul class="mt-3 space-y-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
+          <ul class="mt-3 space-y-2 text-sm text-pastel-dark/80">
             {
               experienceList.map((item) => (
                 <li>
-                  <span class="font-medium text-pastel-dark dark:text-pastel-dark">
+                  <span class="font-medium text-pastel-dark">
                     {item.role}
                   </span>
                   {" · "}
                   <span>{item.company}</span>
                   {" · "}
-                  <span class="text-pastel-accent dark:text-pastel-dark">
+                  <span class="text-pastel-accent">
                     {item.period}
                   </span>
                 </li>
@@ -138,18 +138,18 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           </ul>
         </div>
         <div class="card p-5">
-          <h3 class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+          <h3 class="font-display font-bold text-pastel-dark">
             {t.about.skills}
           </h3>
-          <p class="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
+          <p class="mt-2 text-sm text-pastel-dark/80">
             {skillsList.join(", ")}
           </p>
         </div>
         <div class="card p-5">
-          <h3 class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+          <h3 class="font-display font-bold text-pastel-dark">
             {t.about.aiTitle}
           </h3>
-          <p class="mt-2 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
+          <p class="mt-2 text-sm text-pastel-dark/80">
             {aiSkillsList.join(", ")}
           </p>
         </div>
@@ -157,7 +157,7 @@ const aiSkillsList = t.about.aiSkillsList as string[];
     </section>
 
     <section id="employers" class="mt-16 scroll-mt-8">
-      <h2 class="font-display text-2xl font-bold text-pastel-dark dark:text-pastel-cream">
+      <h2 class="font-display text-2xl font-bold text-pastel-dark">
         {t.employers.title}
       </h2>
       <ul class="mt-6 space-y-4">
@@ -165,17 +165,17 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           employersList.map((item) => (
             <li class="card p-5">
               <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <span class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+                <span class="font-display font-bold text-pastel-dark">
                   {item.company}
                 </span>
-                <span class="text-sm text-pastel-accent dark:text-pastel-dark">
+                <span class="text-sm text-pastel-accent">
                   {item.period}
                 </span>
               </div>
-              <p class="mt-1 text-sm font-medium text-pastel-dark/90 dark:text-pastel-dark/90">
+              <p class="mt-1 text-sm font-medium text-pastel-dark/90">
                 {item.role}
               </p>
-              <p class="mt-2 text-sm text-pastel-dark/75 dark:text-pastel-dark/75">
+              <p class="mt-2 text-sm text-pastel-dark/75">
                 {item.what}
               </p>
             </li>
@@ -185,12 +185,12 @@ const aiSkillsList = t.about.aiSkillsList as string[];
     </section>
 
     <section id="contact" class="mt-16 scroll-mt-8">
-      <h2 class="font-display text-2xl font-bold text-pastel-dark dark:text-pastel-cream">
+      <h2 class="font-display text-2xl font-bold text-pastel-dark">
         {t.contact.title}
       </h2>
       <div class="mt-8 grid gap-10 md:grid-cols-2">
         <div class="card p-6">
-          <h3 class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+          <h3 class="font-display font-bold text-pastel-dark">
             {t.contact.formTitle}
           </h3>
           <div class="mt-4">
@@ -198,7 +198,7 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           </div>
         </div>
         <div class="card p-6">
-          <h3 class="font-display font-bold text-pastel-dark dark:text-pastel-dark">
+          <h3 class="font-display font-bold text-pastel-dark">
             {t.contact.otherContacts}
           </h3>
           <div class="mt-4 flex flex-wrap gap-3">
@@ -217,14 +217,14 @@ const aiSkillsList = t.about.aiSkillsList as string[];
               ))
             }
           </div>
-          <p class="mt-4 text-sm text-pastel-dark/80 dark:text-pastel-dark/80">
+          <p class="mt-4 text-sm text-pastel-dark/80">
             {t.contact.otherContactsDesc}
           </p>
         </div>
       </div>
     </section>
 
-    <footer class="mt-16 border-t border-pastel-sage/50 dark:border-pastel-dark-secondary/50 py-6 text-center text-sm text-pastel-dark/70 dark:text-pastel-cream/70">
+    <footer class="mt-16 border-t border-pastel-sage/50 py-6 text-center text-sm text-pastel-dark/70">
       {t.footer.credit}
     </footer>
   </main>
