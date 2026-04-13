@@ -7,11 +7,6 @@
     font-family: var(--font-sans), system-ui, sans-serif;
     @apply bg-pastel-cream text-pastel-dark;
   }
-  @media (prefers-color-scheme: dark) {
-    body {
-      @apply bg-pastel-dark text-pastel-cream;
-    }
-  }
 }
 
 @layer components {
