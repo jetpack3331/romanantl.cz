@@ -26,6 +26,15 @@ describe("validateContactPayload", () => {
     expect(r.ok).toBe(false);
   });
 
+  it("rejects a message shorter than 10 characters", () => {
+    const r = validateContactPayload({
+      name: "Ada",
+      email: "ada@example.com",
+      message: "short",
+    });
+    expect(r.ok).toBe(false);
+  });
+
   it("rejects non-object body", () => {
     const r = validateContactPayload(null);
     expect(r.ok).toBe(false);

@@ -1,4 +1,5 @@
 const MAX_NAME_LENGTH = 200;
+const MIN_MESSAGE_LENGTH = 10;
 const MAX_MESSAGE_LENGTH = 5000;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -62,6 +63,18 @@ export function validateContactPayload(body: unknown):
     return {
       ok: false,
       response: { status: 400, body: { error: "Invalid email address" } },
+    };
+  }
+
+  if (message.length < MIN_MESSAGE_LENGTH) {
+    return {
+      ok: false,
+      response: {
+        status: 400,
+        body: {
+          error: `Message must be at least ${MIN_MESSAGE_LENGTH} characters`,
+        },
+      },
     };
   }
 

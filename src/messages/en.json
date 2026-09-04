@@ -1,8 +1,8 @@
 {
   "nav": {
     "home": "Home",
-    "tvorba": "Work",
-    "pricing": "Pricing",
+    "portfolio": "Portfolio",
+    "tvorba": "Product Work",
     "about": "About me",
     "employers": "Work experience",
     "contact": "Contact"
@@ -16,9 +16,17 @@
     "title": "Roman Antl - Full Stack Developer | Contractor",
     "description": "Web and app development (React, TypeScript, Vue). 14+ years of experience. E-commerce, web3. Get in touch for projects."
   },
-  "aiMeta": {
-    "title": "AI product photography, video and avatars | Roman Antl",
-    "description": "Photorealistic product photos, lifestyle visuals, short videos and AI avatars. An efficient alternative to expensive photo shoots – from a single photo I create a full set of assets for your shop and campaigns."
+  "productMeta": {
+    "title": "Product creative - photo, video and avatars with AI | Roman Antl",
+    "description": "Photorealistic product photos, lifestyle visuals, short videos and avatars made with AI. An efficient alternative to expensive photo shoots - from a single photo I create a full set of assets for your shop and campaigns."
+  },
+  "experienceMeta": {
+    "title": "Work experience | Roman Antl",
+    "description": "An overview of my work history - from freelance projects to a senior role at an international company."
+  },
+  "experienceHero": {
+    "title": "Work experience",
+    "description": "14+ years of building websites and apps - from small freelance projects through agencies to a senior role at an international hardware company. Here's an overview of where I've worked and what I did there."
   },
   "hero": {
     "left": {
@@ -28,24 +36,28 @@
           "description": "I build fast, scalable solutions that grow with your business. From solid architecture to secure deployment on a modern stack (React, TypeScript, Vue)."
         },
         {
-          "title": "Smart content scaling",
-          "description": "Maximise the potential of a single photo. From one source I create a full set of variants for your catalog. The ideal way to quickly and affordably fill your e-shop with varied content."
+          "title": "Websites for restaurants and hospitality",
+          "description": "Menus, reservations and dish photography in one modern website - including a multilingual version for international guests (Czech, English, Spanish). With AI I can turn your own food photos into appetising visuals without an expensive photographer.",
+          "showProductLink": true
         },
         {
-          "title": "AI visuals, video and avatars",
-          "description": "Skip expensive photo shoots. With AI I create photorealistic product visuals, short videos and AI avatars that follow your brand style. See more examples in the AI work section."
+          "title": "Product creative, powered by AI",
+          "description": "Skip expensive photo shoots. With the help of AI I create photorealistic product visuals, short videos and avatars that follow your brand style. See more examples in the Product Work section.",
+          "showProductLink": true
         }
-      ]
+      ],
+      "productLinkLabel": "Product Work"
     },
-  "aiHero": {
-    "title": "AI product photography, video and avatars",
-    "description": "With AI I can turn a single source photo into a full set of high‑quality product images, videos and avatars. Ideal for e‑shops that want to scale content without costly photo shoots.",
-    "subtitle": "I focus on preserving product fidelity – colours, shapes, logos and copy stay consistent across all variants."
-  },
-  "aiAvatars": {
-    "title": "AI avatars and characters",
-    "description": "I generate consistent AI avatars and characters for campaigns, social media and presentations. A unified look across visuals helps build a recognisable brand without traditional photo sessions."
-  },
+    "productHero": {
+      "title": "Product creative: photo, video and avatars",
+      "description": "With the help of AI I can turn a single source photo into a full set of high-quality product images, videos and avatars. Ideal for e-shops that want to scale content without costly photo shoots.",
+      "subtitle": "I focus on preserving product fidelity - colours, shapes, logos and copy stay consistent across all variants.",
+      "scalingNote": "Maximise the potential of a single photo. From one source I create a full set of variants for your catalog or menu - the ideal way to quickly and affordably fill your e-shop or website with varied content."
+    },
+    "productAvatars": {
+      "title": "Avatars and characters",
+      "description": "With the help of AI I generate consistent avatars and characters for campaigns, social media and presentations. A unified look across visuals helps build a recognisable brand without a traditional photo session."
+    },
     "right": {
       "name": "Roman Antl",
       "subtitle": "Senior Full-stack Developer & AI Specialist",
@@ -55,7 +67,7 @@
     }
   },
   "tvorba": {
-    "title": "Work",
+    "title": "Examples",
     "subtitle": "Sample product images and visuals made with AI and tools - people in clothing, product poses, reworking source photos with AI.",
     "originalLabel": "Original",
     "productPhotosLabel": "Created product photos",
@@ -140,29 +152,40 @@
   "employers": {
     "title": "Who I've worked for",
     "list": [
-      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (former)", "period": "2021 - 2025", "what": "Frontend for hardware crypto and wallet products." },
-      { "company": "Freelancer / various clients", "role": "Full Stack Developer", "period": "2011 - present", "what": "E-commerce, intranets, websites (Vue, React, PHP, PostgreSQL, AWS). Projects like Světdovolené.cz, Flexiana, Alza, Actum, QEST, System Nine." },
-      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Frontend development for tech platform." },
-      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Intranet applications and portals for employees and clients." },
-      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend and backend systems (Phalcon, Angular, React, Redux, Webpack)." },
+      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (former)", "period": "2021 - 2026", "what": "Key contributor to rebuilding trezor.io completely from scratch on Next.js and GraphQL - close collaboration with product and design in an Agile/Scrum environment, translating Figma designs into high-performance UIs. Owned the development environment and Dockerization, was the primary technical expert for the Adyen payment gateway integration, took care of the testing environment (Playwright, unit/integration tests) and built internal tools to speed up deployments; also maintained the satoshilabs.com corporate website." },
+      { "company": "Freelancer / various clients", "role": "Full Stack Developer", "period": "2011 - present", "what": "E-commerce, intranets and websites (Vue, React, PHP, PostgreSQL, AWS) - from a cryptocurrency exchange platform built with Web3, Ethereum and Solidity smart contracts for Flexiana, through an internal POS system for Alza (Angular, .NET), to independent projects like Světdovolené.cz, Actum, QEST and System Nine." },
+      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Built scalable JS/TS components and owned the frontend stack for a specialized analytics platform for Twitch streamers." },
+      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Frontend development (Angular, ReactJS, Node.js) of intranet applications and B2B portals for employees and clients, including complex backend customizations." },
+      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend and backend systems (Phalcon, Angular, React, Redux, Webpack) for internal applications and B2B portals with complex backend work." },
       { "company": "NAR marketing s.r.o.", "role": "Programmer", "period": "2010 - 2011", "what": "E-business and marketing processes in B2B." }
     ]
   },
   "about": {
     "title": "About me",
-    "experience": "Experience",
     "skills": "Skills",
-    "experienceList": [
-      { "role": "Senior Frontend Developer (former)", "company": "SatoshiLabs", "period": "2021 - 2025" },
-      { "role": "Full Stack Developer", "company": "Freelancer", "period": "2011 - present" },
-      { "role": "Frontend Developer", "company": "StreamBee", "period": "2020 - 2021" },
-      { "role": "JavaScript Front-End Developer", "company": "Apollo Soft", "period": "2016 - 2017" },
-      { "role": "Frontend Developer", "company": "Bileto Technologies", "period": "2014 - 2016" },
-      { "role": "Programmer", "company": "NAR marketing s.r.o.", "period": "2010 - 2011" }
-    ],
+    "experienceCta": {
+      "title": "Work experience",
+      "description": "Take a look at where I've worked and what I did there.",
+      "linkLabel": "View experience"
+    },
     "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
     "aiTitle": "AI",
     "aiSkillsList": ["AI image generation", "AI video generation", "AI tools (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "Generative AI for product photography"]
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "A selection of websites and apps I designed and built from the ground up - from travel portals to custom platforms and e-commerce stores.",
+    "comingSoonLabel": "Screenshot coming soon",
+    "viewSiteLabel": "View site",
+    "items": [
+      { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "A travel portal I independently designed, built and maintain (PHP, Docker, PostgreSQL)." },
+      { "id": "einpresswire", "title": "EIN Presswire", "description": "A complete web platform built from scratch with Vue.js, covering both frontend and backend." },
+      { "id": "apartman", "title": "Apartment in Spain", "description": "A presentation website for a holiday apartment rental in Spain." },
+      { "id": "asoka", "title": "Asoka Events", "description": "An internal management system for an animal shelter in Spain." },
+      { "id": "coolsocks", "title": "CoolSocks.cz", "description": "An e-commerce store built from design to deployment." },
+      { "id": "spaindecoder", "title": "Spain Decoder", "description": "An AI platform that helps expats in Spain decode official documents (NIE, residency, tax forms) and track free appointment slots at government offices." },
+      { "id": "rudolfantl", "title": "RudolfAntl.eu", "description": "An accommodation rental website in Ostrava, rebuilt from WordPress into a custom solution with much better SEO, load times and a purpose-built admin." }
+    ]
   },
   "contact": {
     "title": "Contact",
@@ -185,5 +208,14 @@
   },
   "footer": {
     "credit": "Crafted with Claude ♥"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Page not found | Roman Antl",
+      "description": "The page you're looking for doesn't exist."
+    },
+    "heading": "Page not found",
+    "message": "Sorry, this page couldn't be found. It may have been moved or no longer exists.",
+    "backHome": "Back to homepage"
   }
 }

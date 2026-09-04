@@ -1,0 +1,54 @@
+---
+import type { Messages } from "@/lib/get-messages";
+
+interface Props {
+  messages: Messages;
+}
+
+const { messages: t } = Astro.props;
+
+type EmployerItem = {
+  company: string;
+  role: string;
+  period: string;
+  what: string;
+};
+const employersList = t.employers.list as EmployerItem[];
+---
+
+<div class="min-h-screen bg-pastel-cream">
+  <main class="mx-auto max-w-5xl px-6 py-10 md:py-14">
+    <section>
+      <h1 class="font-display text-2xl font-bold text-pastel-dark md:text-3xl">
+        {t.experienceHero.title}
+      </h1>
+      <p class="mt-3 max-w-2xl text-sm text-pastel-dark/90 leading-relaxed">
+        {t.experienceHero.description}
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="font-display text-2xl font-bold text-pastel-dark">
+        {t.employers.title}
+      </h2>
+      <ul class="mt-6 space-y-4">
+        {
+          employersList.map((item) => (
+            <li class="card p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <span class="font-display font-bold text-pastel-dark">
+                  {item.company}
+                </span>
+                <span class="text-sm text-pastel-accent">{item.period}</span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-pastel-dark/90">
+                {item.role}
+              </p>
+              <p class="mt-2 text-sm text-pastel-dark/75">{item.what}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</div>

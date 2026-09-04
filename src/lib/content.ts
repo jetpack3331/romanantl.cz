@@ -30,3 +30,23 @@ export const socialLinks = [
     color: "#1DA1F2",
   },
 ] as const;
+
+/**
+ * Locale-agnostic portfolio project data (links, screenshot ids). Localized
+ * title/description text lives in messages/*.json under `portfolio.items`,
+ * matched by `id`.
+ *
+ * To swap a placeholder image for a real screenshot, add a file named
+ * `<id>.<ext>` to `src/assets/portfolio/` (e.g. `src/assets/portfolio/svetdovolene.png`).
+ * It's picked up automatically at build time (via import.meta.glob in
+ * HomePage.astro) and optimized through astro:assets - no code change needed.
+ */
+export const portfolioProjects = [
+  { id: "svetdovolene", href: "https://svetdovolene.cz" },
+  { id: "einpresswire", href: "https://www.einpresswire.com" },
+  { id: "apartman", href: "https://apartmanvespanelsku.cz" },
+  { id: "asoka", href: "https://asoka-events.es" },
+  { id: "coolsocks", href: "https://coolsocks.cz" },
+  { id: "spaindecoder", href: "https://spaindecoder.es" },
+  { id: "rudolfantl", href: "https://rudolfantl.eu" },
+] as const;

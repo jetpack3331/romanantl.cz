@@ -11,4 +11,9 @@ describe("getMessages", () => {
     const t = getMessages("en");
     expect(t.nav.home).toBe("Home");
   });
+
+  it("returns Spanish for es", () => {
+    const t = getMessages("es");
+    expect(t.nav.home).toBe("Inicio");
+  });
 });

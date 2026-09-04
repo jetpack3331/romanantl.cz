@@ -1,0 +1,33 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import ProductPage from "@/components/product/ProductPage.astro";
+import { getMessages } from "@/lib/get-messages";
+import { routeAlternateLanguages, routePath } from "@/lib/routes";
+import { getSiteBaseUrl } from "@/lib/site-url";
+
+const locale = "es";
+const t = getMessages(locale);
+const base = getSiteBaseUrl();
+const pathname = routePath("product", locale);
+const canonical = `${base}${pathname}`;
+const ogImageUrl = `${base}/profile_picture.jpeg`;
+const alternateLanguages = routeAlternateLanguages("product", base);
+---
+
+<BaseLayout
+  lang="es"
+  title={t.productMeta.title}
+  description={t.productMeta.description}
+  canonicalUrl={canonical}
+  ogLocale="es_ES"
+  ogImageUrl={ogImageUrl}
+  openGraphUrl={canonical}
+  siteName={t.site.name}
+  alternateLanguages={alternateLanguages}
+>
+  <Header locale={locale} messages={t} pathname={pathname} />
+  <ProductPage messages={t} />
+</BaseLayout>

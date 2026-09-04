@@ -1,4 +1,3 @@
 {
-  "entry": ["astro.config.mjs"],
   "ignore": ["dist/**", ".astro/**"]
 }

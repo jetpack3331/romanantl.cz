@@ -11,6 +11,7 @@ interface Props {
   alternateLanguages: Record<string, string>;
   openGraphUrl: string;
   siteName: string;
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   alternateLanguages,
   openGraphUrl,
   siteName,
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -48,8 +50,8 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="format-detection" content="telephone=no, email=yes" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

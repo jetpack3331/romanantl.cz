@@ -8,7 +8,7 @@ export default tseslint.config(
     ignores: [
       "dist/**",
       ".astro/**",
-      ".next/**",
+      ".vercel/**",
       "node_modules/**",
     ],
   }

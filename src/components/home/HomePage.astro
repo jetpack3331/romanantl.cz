@@ -1,7 +1,11 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 import type { Locale } from "@/lib/i18n";
 import type { Messages } from "@/lib/get-messages";
-import { socialLinks } from "@/lib/content";
+import { socialLinks, portfolioProjects } from "@/lib/content";
+import { placeholdUrl } from "@/lib/placehold";
+import { routePath } from "@/lib/routes";
 import { ContactForm } from "@/components/react/ContactForm.tsx";
 import BioWithBold from "@/components/home/BioWithBold.astro";
 
@@ -15,6 +19,7 @@ const { locale, messages: t } = Astro.props;
 const sections = t.hero.left.sections as Array<{
   title: string;
   description: string;
+  showProductLink?: boolean;
 }>;
 const heroRight = t.hero.right as {
   name: string;
@@ -24,19 +29,39 @@ const heroRight = t.hero.right as {
   techStack: string[];
 };
 
-type ExperienceItem = { role: string; company: string; period: string };
-const experienceList = t.about.experienceList as ExperienceItem[];
-
-type EmployerItem = {
-  company: string;
-  role: string;
-  period: string;
-  what: string;
-};
-const employersList = t.employers.list as EmployerItem[];
-
 const skillsList = t.about.skillsList as string[];
 const aiSkillsList = t.about.aiSkillsList as string[];
+
+const experienceHref = routePath("experience", locale);
+const productHref = routePath("product", locale);
+
+type PortfolioItem = { id: string; title: string; description: string };
+const portfolioItems = t.portfolio.items as PortfolioItem[];
+
+// Screenshots that have been uploaded to src/assets/portfolio/<id>.<ext>.
+// Anything without a matching file here falls back to a placeholder below,
+// so a project can be added to `portfolioProjects` before its screenshot exists.
+const portfolioImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/portfolio/*",
+  { eager: true }
+);
+function findPortfolioImage(id: string): ImageMetadata | undefined {
+  const entry = Object.entries(portfolioImages).find(([path]) =>
+    path.includes(`/${id}.`)
+  );
+  return entry?.[1].default;
+}
+
+const portfolioCards = portfolioProjects.map((project) => {
+  const item = portfolioItems.find((i) => i.id === project.id);
+  return {
+    id: project.id,
+    href: project.href,
+    title: item?.title ?? project.id,
+    description: item?.description ?? "",
+    image: findPortfolioImage(project.id),
+  };
+});
 ---
 
 <div class="min-h-screen bg-pastel-cream">
@@ -51,18 +76,14 @@ const aiSkillsList = t.about.aiSkillsList as string[];
               </h2>
               <p class="mt-2 text-sm text-pastel-dark/90 leading-relaxed">
                 {section.description}
-                {section.title.startsWith("AI ") && (
+                {section.showProductLink && (
                   <>
                     {" "}
                     <a
-                      href={
-                        locale === "cs"
-                          ? "/ai-tvorba"
-                          : `/${locale}/ai-tvorba`
-                      }
+                      href={productHref}
                       class="font-semibold text-pastel-accent underline-offset-4 hover:underline"
                     >
-                      {locale === "cs" ? "AI tvorba" : "AI work"}
+                      {t.hero.left.productLinkLabel}
                     </a>
                     .
                   </>
@@ -110,33 +131,76 @@ const aiSkillsList = t.about.aiSkillsList as string[];
       </div>
     </section>
 
+    <section id="portfolio" class="mt-16 scroll-mt-8">
+      <h2 class="font-display text-2xl font-bold text-pastel-dark">
+        {t.portfolio.title}
+      </h2>
+      <p class="mt-2 max-w-2xl text-pastel-dark/80">
+        {t.portfolio.subtitle}
+      </p>
+      <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          portfolioCards.map((project) => (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="card group block overflow-hidden p-0"
+            >
+              <div class="relative aspect-[4/3] w-full overflow-hidden bg-pastel-sand/40">
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src={placeholdUrl(600, 450, project.title)}
+                    alt={project.title}
+                    width={600}
+                    height={450}
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+              <div class="p-5">
+                <h3 class="font-display font-bold text-pastel-dark">
+                  {project.title}
+                </h3>
+                <p class="mt-2 text-sm text-pastel-dark/75">
+                  {project.description}
+                </p>
+                <span class="mt-3 inline-block text-sm font-semibold text-pastel-accent group-hover:underline">
+                  {t.portfolio.viewSiteLabel} →
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
     <section id="about" class="mt-16 scroll-mt-8">
       <h2 class="font-display text-2xl font-bold text-pastel-dark">
         {t.about.title}
       </h2>
       <div class="mt-8 grid gap-8 md:grid-cols-2">
-        <div class="card p-5">
+        <a href={experienceHref} class="card group p-5 transition hover:bg-pastel-sand/40">
           <h3 class="font-display font-bold text-pastel-dark">
-            {t.about.experience}
+            {t.about.experienceCta.title}
           </h3>
-          <ul class="mt-3 space-y-2 text-sm text-pastel-dark/80">
-            {
-              experienceList.map((item) => (
-                <li>
-                  <span class="font-medium text-pastel-dark">
-                    {item.role}
-                  </span>
-                  {" · "}
-                  <span>{item.company}</span>
-                  {" · "}
-                  <span class="text-pastel-accent">
-                    {item.period}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+          <p class="mt-2 text-sm text-pastel-dark/80">
+            {t.about.experienceCta.description}
+          </p>
+          <span class="mt-3 inline-block text-sm font-semibold text-pastel-accent group-hover:underline">
+            {t.about.experienceCta.linkLabel} →
+          </span>
+        </a>
         <div class="card p-5">
           <h3 class="font-display font-bold text-pastel-dark">
             {t.about.skills}
@@ -154,34 +218,6 @@ const aiSkillsList = t.about.aiSkillsList as string[];
           </p>
         </div>
       </div>
-    </section>
-
-    <section id="employers" class="mt-16 scroll-mt-8">
-      <h2 class="font-display text-2xl font-bold text-pastel-dark">
-        {t.employers.title}
-      </h2>
-      <ul class="mt-6 space-y-4">
-        {
-          employersList.map((item) => (
-            <li class="card p-5">
-              <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <span class="font-display font-bold text-pastel-dark">
-                  {item.company}
-                </span>
-                <span class="text-sm text-pastel-accent">
-                  {item.period}
-                </span>
-              </div>
-              <p class="mt-1 text-sm font-medium text-pastel-dark/90">
-                {item.role}
-              </p>
-              <p class="mt-2 text-sm text-pastel-dark/75">
-                {item.what}
-              </p>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
     <section id="contact" class="mt-16 scroll-mt-8">

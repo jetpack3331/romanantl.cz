@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import { getMessages } from "@/lib/get-messages";
+import { locales, resolveLocaleFromPathname } from "@/lib/i18n";
+import { getSiteBaseUrl } from "@/lib/site-url";
+
+const pathname = Astro.url.pathname;
+const locale = resolveLocaleFromPathname(pathname);
+const t = getMessages(locale);
+const base = getSiteBaseUrl();
+const homeHref = locale === "cs" ? "/" : `/${locale}`;
+const alternateLanguages = Object.fromEntries(
+  locales.map((loc) => [loc, loc === "cs" ? base : `${base}/${loc}`])
+);
+const ogLocaleByLocale = { cs: "cs_CZ", en: "en_US", es: "es_ES" } as const;
+---
+
+<BaseLayout
+  lang={locale}
+  title={t.notFound.meta.title}
+  description={t.notFound.meta.description}
+  canonicalUrl={`${base}${pathname}`}
+  ogLocale={ogLocaleByLocale[locale]}
+  ogImageUrl={`${base}/profile_picture.jpeg`}
+  openGraphUrl={`${base}${pathname}`}
+  siteName={t.site.name}
+  alternateLanguages={alternateLanguages}
+  noindex
+>
+  <Header locale={locale} messages={t} pathname={pathname} />
+  <main class="mx-auto max-w-5xl px-6 py-24 text-center">
+    <p class="font-display text-6xl font-bold text-pastel-accent">404</p>
+    <h1 class="font-display mt-4 text-2xl font-bold text-pastel-dark md:text-3xl">
+      {t.notFound.heading}
+    </h1>
+    <p class="mt-3 text-sm text-pastel-dark/80">
+      {t.notFound.message}
+    </p>
+    <a href={homeHref} class="btn-primary mt-8 inline-block">
+      {t.notFound.backHome}
+    </a>
+  </main>
+</BaseLayout>

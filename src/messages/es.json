@@ -1,0 +1,221 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "portfolio": "Portfolio",
+    "tvorba": "Creación de producto",
+    "about": "Sobre mí",
+    "employers": "Experiencia laboral",
+    "contact": "Contacto"
+  },
+  "site": {
+    "name": "Roman Antl",
+    "title": "Full Stack Developer / Contractor",
+    "tagline": "Más de 14 años de experiencia · freelance"
+  },
+  "meta": {
+    "title": "Roman Antl - Full Stack Developer | Contractor",
+    "description": "Desarrollo web y de aplicaciones (React, TypeScript, Vue). Más de 14 años de experiencia. E-commerce, web3. Contacta para tu proyecto."
+  },
+  "productMeta": {
+    "title": "Creación de producto: foto, vídeo y avatares con IA | Roman Antl",
+    "description": "Fotografías de producto fotorrealistas, imágenes lifestyle, vídeos cortos y avatares creados con ayuda de IA. Una alternativa eficiente a las sesiones fotográficas caras: a partir de una sola foto creo un set completo listo para tu tienda y tus campañas."
+  },
+  "experienceMeta": {
+    "title": "Experiencia laboral | Roman Antl",
+    "description": "Un resumen de mi trayectoria profesional: desde proyectos freelance hasta un puesto senior en una empresa internacional."
+  },
+  "experienceHero": {
+    "title": "Experiencia laboral",
+    "description": "Más de 14 años construyendo webs y aplicaciones: desde pequeños proyectos freelance, pasando por agencias, hasta un puesto senior en una empresa internacional de hardware. Aquí tienes un resumen de dónde he trabajado y qué he hecho en cada sitio."
+  },
+  "hero": {
+    "left": {
+      "sections": [
+        {
+          "title": "Desarrollo de webs y aplicaciones modernas",
+          "description": "Construyo soluciones rápidas y escalables que crecen junto a tu negocio. Desde una arquitectura sólida hasta un despliegue seguro sobre un stack moderno (React, TypeScript, Vue)."
+        },
+        {
+          "title": "Webs para restaurantes y hostelería",
+          "description": "Menú, reservas y fotos de tus platos en una sola web moderna, incluida una versión multilingüe para huéspedes internacionales (checo, inglés, español). Con IA puedo convertir tus propias fotos de comida en imágenes apetitosas sin necesidad de un fotógrafo caro.",
+          "showProductLink": true
+        },
+        {
+          "title": "Creación de producto con ayuda de IA",
+          "description": "Olvídate de las sesiones fotográficas costosas. Con ayuda de IA creo visuales de producto fotorrealistas, vídeos cortos y avatares que respetan el estilo visual de tu marca. Descubre más ejemplos en la sección de Creación de producto.",
+          "showProductLink": true
+        }
+      ],
+      "productLinkLabel": "Creación de producto"
+    },
+    "productHero": {
+      "title": "Creación de producto: foto, vídeo y avatares",
+      "description": "Con ayuda de IA puedo transformar una sola foto de origen en un set completo de imágenes, vídeos y avatares de producto de alta calidad. Ideal para tiendas online que quieren escalar su contenido sin sesiones fotográficas costosas.",
+      "subtitle": "Me centro en preservar la fidelidad del producto: colores, formas, logotipos y textos se mantienen consistentes en todas las variantes.",
+      "scalingNote": "Maximiza el potencial de una sola fotografía. A partir de una fuente creo un set completo de variantes para tu catálogo o menú - la forma ideal de llenar tu tienda online o web con contenido variado de forma rápida y económica."
+    },
+    "productAvatars": {
+      "title": "Avatares y personajes",
+      "description": "Con ayuda de IA genero avatares y personajes coherentes entre sí para campañas, redes sociales o materiales de presentación. Un aspecto unificado en todos los visuales ayuda a construir una marca reconocible sin necesidad de una sesión fotográfica tradicional."
+    },
+    "right": {
+      "name": "Roman Antl",
+      "subtitle": "Senior Full-stack Developer & AI Specialist",
+      "bio": "Combino **más de 14 años** de experiencia en desarrollo con las últimas tecnologías de **IA**. He llevado a cabo proyectos exigentes, desde exchanges de criptomonedas y **Web3** hasta soluciones de e-commerce complejas.\n\nAl integrar la **IA** en el flujo de trabajo no solo entrego código, sino soluciones eficientes que ahorran tu tiempo y tu presupuesto. ¿Buscas un socio capaz de anticipar lo que viene? Estás en el lugar correcto.",
+      "cta": "Contactar sin compromiso",
+      "techStack": ["React", "Vue", "Node.js", "IA"]
+    }
+  },
+  "tvorba": {
+    "title": "Ejemplos",
+    "subtitle": "Ejemplos de imágenes y visuales de producto creados con ayuda de IA y otras herramientas: personas con ropa, distintas posiciones de producto y reelaboración de fotos originales mediante IA.",
+    "originalLabel": "Original",
+    "productPhotosLabel": "Fotografías de producto creadas",
+    "items": [
+      {
+        "id": "dress",
+        "title": "Vestido de mujer: de Marketplace a la tienda online",
+        "description": "Fuente: fotos de Facebook Marketplace. A partir de ellas se crearon fotografías de producto de calidad con un estilo unificado, sin necesidad de una sesión fotográfica costosa.",
+        "imageText": "Vestido de mujer",
+        "hasVariants": true,
+        "variantsText": "2 fuentes → 4 variantes"
+      },
+      {
+        "id": "1",
+        "title": "Imágenes de producto: temporizador visual",
+        "description": "Fuente: Amazon. Imágenes generadas de un temporizador visual. Distintas posiciones y variantes a partir de una sola fuente.",
+        "imageText": "Temporizador visual",
+        "hasVariants": true,
+        "variantsText": "1 fuente → 4 variantes"
+      },
+      {
+        "id": "parfem",
+        "title": "Imágenes de producto: perfume",
+        "description": "Fuente: fotografía de producto original. Variantes generadas del perfume en distintas posiciones.",
+        "imageText": "Perfume",
+        "hasVariants": true,
+        "variantsText": "1 fuente → 4 variantes"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Precios",
+    "packages": [
+      {
+        "name": "STARTER",
+        "price": "€79",
+        "features": [
+          "1 producto, 3 variantes lifestyle (distintas escenas)",
+          "Eliminación de fondo + integración en la escena",
+          "Ajuste de luz y sombras para que el producto se vea natural",
+          "Entrega en 48 h"
+        ],
+        "idealFor": "Ideal para: tiendas online pequeñas, probar el servicio"
+      },
+      {
+        "name": "STANDARD",
+        "price": "€199",
+        "features": [
+          "1 producto, 6 variantes (3 lifestyle + 3 con fondo neutro)",
+          "Trabajo profesional de iluminación y conservación de todos los detalles del producto (textos, logotipos, texturas)",
+          "Elegimos juntos el estilo y el público objetivo para las fotos",
+          "Entrega en 3 días laborables",
+          "1 ronda de revisiones según tu feedback"
+        ],
+        "idealFor": "Ideal para: vendedores de Amazon, páginas de producto"
+      },
+      {
+        "name": "PREMIUM",
+        "price": "€449",
+        "features": [
+          "Hasta 3 productos, 5 variantes por producto (15 imágenes en total)",
+          "Estilo visual unificado en todos los productos",
+          "Fotos para la tienda online y redes sociales (cuadrada, vertical, horizontal)",
+          "Antes de empezar te envío propuestas de estilo para tu aprobación",
+          "Entrega en 5 días laborables",
+          "2 rondas de revisiones"
+        ],
+        "idealFor": "Ideal para: marcas de e-commerce, lanzamientos de nuevos productos"
+      }
+    ],
+    "retainer": {
+      "name": "Contrato mensual",
+      "price": "desde €799/mes",
+      "features": [
+        "Hasta 10 productos al mes",
+        "Procesamiento prioritario",
+        "Ajustes y ampliaciones continuas según necesidad"
+      ],
+      "idealFor": "Ideal para: tiendas online con novedades regulares"
+    }
+  },
+  "employers": {
+    "title": "Para quién he trabajado",
+    "list": [
+      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (anteriormente)", "period": "2021 - 2026", "what": "Miembro clave del equipo que reconstruyó trezor.io por completo desde cero con Next.js y GraphQL - estrecha colaboración con producto y diseño (Agile/Scrum), traduciendo diseños de Figma en interfaces de alto rendimiento. Me encargué del entorno de desarrollo y la Dockerización, fui el experto técnico principal en la integración de la pasarela de pago Adyen, me encargué del entorno de pruebas (Playwright, tests unitarios/de integración) y creé herramientas internas para acelerar los despliegues; también mantuve el sitio corporativo satoshilabs.com." },
+      { "company": "Freelance / varios clientes", "role": "Full Stack Developer", "period": "2011 - actualidad", "what": "E-commerce, intranets y sitios web (Vue, React, PHP, PostgreSQL, AWS) - desde una plataforma de intercambio de criptomonedas con Web3, Ethereum y contratos inteligentes en Solidity para Flexiana, pasando por un sistema POS interno para Alza (Angular, .NET), hasta proyectos propios como Světdovolené.cz, Actum, QEST y System Nine." },
+      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Desarrollé componentes JS/TS escalables y gestioné el stack frontend de una plataforma de análisis especializada para streamers de Twitch." },
+      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Desarrollo frontend (Angular, ReactJS, Node.js) de aplicaciones de intranet y portales B2B para empleados y clientes, incluyendo personalizaciones complejas del backend." },
+      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Sistemas frontend y backend (Phalcon, Angular, React, Redux, Webpack) para aplicaciones internas y portales B2B con trabajo de backend complejo." },
+      { "company": "NAR marketing s.r.o.", "role": "Programador", "period": "2010 - 2011", "what": "Procesos de e-business y marketing en el ámbito B2B." }
+    ]
+  },
+  "about": {
+    "title": "Sobre mí",
+    "skills": "Habilidades",
+    "experienceCta": {
+      "title": "Experiencia laboral",
+      "description": "Descubre dónde he trabajado y qué he hecho en cada proyecto.",
+      "linkLabel": "Ver experiencia"
+    },
+    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
+    "aiTitle": "IA",
+    "aiSkillsList": ["Generación de imágenes con IA", "Generación de vídeos con IA", "Herramientas de IA (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "IA generativa para fotografía de producto"]
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Una selección de webs y aplicaciones que diseñé y construí desde cero: desde portales de viajes hasta plataformas propias y tiendas online.",
+    "comingSoonLabel": "Captura próximamente",
+    "viewSiteLabel": "Ver sitio",
+    "items": [
+      { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Portal de viajes que diseñé, construí y mantengo de forma independiente (PHP, Docker, PostgreSQL)." },
+      { "id": "einpresswire", "title": "EIN Presswire", "description": "Plataforma web completa construida desde cero con Vue.js, tanto en frontend como en backend." },
+      { "id": "apartman", "title": "Apartamento en España", "description": "Web de presentación para el alquiler de un apartamento vacacional en España." },
+      { "id": "asoka", "title": "Asoka Events", "description": "Sistema interno de gestión para una protectora de animales en España." },
+      { "id": "coolsocks", "title": "CoolSocks.cz", "description": "Tienda online construida desde el diseño hasta el despliegue." },
+      { "id": "spaindecoder", "title": "Spain Decoder", "description": "Plataforma con IA que ayuda a extranjeros en España a entender documentos oficiales (NIE, residencia, impuestos) y avisa de citas disponibles en las administraciones." },
+      { "id": "rudolfantl", "title": "RudolfAntl.eu", "description": "Web de alquiler de alojamiento en Ostrava (República Checa), reconstruida desde WordPress a una solución a medida con mejor SEO, velocidad de carga y un panel de administración propio." }
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "formTitle": "Escríbeme",
+    "formFields": { "name": "Nombre", "email": "Correo electrónico", "message": "Mensaje" },
+    "submitLabel": "Enviar",
+    "sending": "Enviando…",
+    "successMessage": "Mensaje enviado. Te responderé lo antes posible.",
+    "errorMessage": "Algo ha ido mal. Inténtalo de nuevo o escríbeme directamente por correo electrónico.",
+    "errors": {
+      "nameRequired": "El nombre es obligatorio.",
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailInvalid": "Introduce una dirección de correo electrónico válida.",
+      "messageRequired": "El mensaje es obligatorio.",
+      "messageMin": "El mensaje debe tener al menos 10 caracteres."
+    },
+    "otherContacts": "Otros contactos",
+    "otherContactsDesc": "LinkedIn, GitHub, correo electrónico, Facebook, Twitter: escríbeme cuando quieras.",
+    "placeholders": { "name": "Tu nombre", "email": "tu@email.com", "message": "Tu mensaje..." }
+  },
+  "footer": {
+    "credit": "Sitio creado con la ayuda de Claude ♥"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Página no encontrada | Roman Antl",
+      "description": "La página que buscas no existe."
+    },
+    "heading": "Página no encontrada",
+    "message": "Lo siento, no se ha encontrado esta página. Puede que se haya movido o que ya no exista.",
+    "backHome": "Volver al inicio"
+  }
+}

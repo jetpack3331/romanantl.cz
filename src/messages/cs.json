@@ -1,8 +1,8 @@
 {
   "nav": {
     "home": "Domů",
-    "tvorba": "Tvorba",
-    "pricing": "Ceník",
+    "portfolio": "Portfolio",
+    "tvorba": "Produktová tvorba",
     "about": "O mně",
     "employers": "Pracovní zkušenosti",
     "contact": "Kontakt"
@@ -16,9 +16,17 @@
     "title": "Roman Antl - Full Stack Developer | Contractor",
     "description": "Vývoj webů a aplikací (React, TypeScript, Vue). 14+ let zkušeností. E-commerce, web3. Kontakt pro projekty."
   },
-  "aiMeta": {
-    "title": "AI produktové fotografie, videa a avatary | Roman Antl",
-    "description": "Fotorealistické produktové fotografie, lifestyle vizuály, krátká videa a AI avatary. Efektivní alternativa k drahým focením – z jedné fotky vytvořím celý set použitelný pro e‑shop i kampaně."
+  "productMeta": {
+    "title": "Produktová tvorba - foto, video a avatary s AI | Roman Antl",
+    "description": "Fotorealistické produktové fotografie, lifestyle vizuály, krátká videa a avatary vytvořené s pomocí AI. Efektivní alternativa k drahým focením - z jedné fotky vytvořím celý set použitelný pro e-shop i kampaně."
+  },
+  "experienceMeta": {
+    "title": "Pracovní zkušenosti | Roman Antl",
+    "description": "Přehled mé pracovní historie - od freelance projektů po seniorní roli v mezinárodní firmě."
+  },
+  "experienceHero": {
+    "title": "Pracovní zkušenosti",
+    "description": "14+ let vývoje webů a aplikací - od malých freelance projektů přes agentury až po seniorní roli v mezinárodní hardwarové firmě. Tady je přehled toho, kde jsem pracoval a co jsem tam řešil."
   },
   "hero": {
     "left": {
@@ -28,24 +36,28 @@
           "description": "Stavím rychlá a škálovatelná řešení, která rostou s vaším byznysem. Od promyšlené architektury až po bezpečné nasazení na moderním stacku (React, TypeScript, Vue)."
         },
         {
-          "title": "Chytré škálování obsahu",
-          "description": "Maximalizujte potenciál jediné fotografie. Z jednoho zdroje vytvořím kompletní sadu variant pro váš katalog. Ideální cesta, jak rychle a levně naplnit e-shop pestrým obsahem."
+          "title": "Weby pro restaurace a gastro provozy",
+          "description": "Menu, rezervace i fotky pokrmů v jednom moderním webu - včetně vícejazyčné verze pro zahraniční hosty (čeština, angličtina, španělština). Pomocí AI dokážu z vašich vlastních fotek jídel vytvořit chutné produktové vizuály bez nutnosti drahého fotografa.",
+          "showProductLink": true
         },
         {
-          "title": "AI vizuály, videa a avatary",
-          "description": "Vynechte nákladná focení. Pomocí AI vytvářím fotorealistické produktové vizuály, krátká videa a AI avatary, které drží vizuální styl značky. Více ukázek najdete v sekci AI tvorba."
+          "title": "Produktová tvorba s pomocí AI",
+          "description": "Vynechte nákladná focení. Vytvářím fotorealistické produktové vizuály, krátká videa a avatary s pomocí AI, které drží vizuální styl vaší značky. Více ukázek najdete v sekci Produktová tvorba.",
+          "showProductLink": true
         }
-      ]
+      ],
+      "productLinkLabel": "Produktová tvorba"
     },
-  "aiHero": {
-    "title": "AI produktové fotografie, videa a avatary",
-    "description": "Pomocí AI dokážu z jedné zdrojové fotky vytvořit sadu kvalitních produktových obrázků, videí i avatarů. Ideální pro e‑shopy, které chtějí škálovat obsah bez drahých focení.",
-    "subtitle": "Soustředím se na zachování věrnosti produktu – barvy, tvary, loga i texty zůstávají konzistentní napříč všemi variantami."
-  },
-  "aiAvatars": {
-    "title": "AI avatary a postavy",
-    "description": "Vygeneruji konzistentní AI avatary a postavy pro kampaně, sociální sítě nebo prezentační materiály. Jednotný vzhled napříč vizuály pomáhá budovat zapamatovatelnou značku bez potřeby klasického focení."
-  },
+    "productHero": {
+      "title": "Produktová tvorba",
+      "description": "Z jedné zdrojové fotky dokážu s pomocí AI vytvořit sadu kvalitních produktových obrázků, videí i avatarů. Ideální pro e-shopy, které chtějí škálovat obsah bez drahých focení.",
+      "subtitle": "Soustředím se na zachování věrnosti produktu - barvy, tvary, loga i texty zůstávají konzistentní napříč všemi variantami.",
+      "scalingNote": "Maximalizujte potenciál jediné fotografie. Z jednoho zdroje vytvořím kompletní sadu variant pro váš katalog nebo menu - ideální cesta, jak rychle a levně naplnit e-shop nebo web pestrým obsahem."
+    },
+    "productAvatars": {
+      "title": "Avatary a postavy",
+      "description": "S pomocí AI vygeneruji konzistentní avatary a postavy pro kampaně, sociální sítě nebo prezentační materiály. Jednotný vzhled napříč vizuály pomáhá budovat zapamatovatelnou značku bez potřeby klasického focení."
+    },
     "right": {
       "name": "Roman Antl",
       "subtitle": "Senior Full-stack Developer & AI Specialist",
@@ -55,7 +67,7 @@
     }
   },
   "tvorba": {
-    "title": "Tvorba",
+    "title": "Ukázky",
     "subtitle": "Ukázky produktových obrázků a vizuálů vytvořených s pomocí AI a nástrojů - lidé v oblečení, různé pozice produktů, přepracování zdrojových fotek pomocí AI.",
     "originalLabel": "Originál",
     "productPhotosLabel": "Vytvořené produktové fotografie",
@@ -140,29 +152,40 @@
   "employers": {
     "title": "Pro koho jsem pracoval",
     "list": [
-      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (dříve)", "period": "2021 - 2025", "what": "Frontend pro produkty v oblasti hardwarové kryptografie a peněženek." },
-      { "company": "Freelancer / různí klienti", "role": "Full Stack Developer", "period": "2011 - dosud", "what": "E-commerce, intranety, weby (Vue, React, PHP, PostgreSQL, AWS). Projekty jako Světdovolené.cz, Flexiana, Alza, Actum, QEST, System Nine." },
-      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Frontend vývoj pro technologickou platformu." },
-      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Intranetové aplikace a portály pro zaměstnance a klienty." },
-      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend a backend systémy (Phalcon, Angular, React, Redux, Webpack)." },
+      { "company": "SatoshiLabs", "role": "Senior Frontend Developer (dříve)", "period": "2021 - 2026", "what": "Klíčový člen týmu, který postavil web trezor.io kompletně od nuly na Next.js a GraphQL - úzká spolupráce s produktem a designem (Agile/Scrum), převod Figma návrhů do vysoce výkonných UI. Staral jsem se o vývojové prostředí a Dockerizaci, byl hlavním technickým expertem na integraci platební brány Adyen, staral jsem se o testovací prostředí (Playwright, unit/integration testy) a stavěl interní nástroje pro rychlejší nasazení; průběžně jsem udržoval i firemní web satoshilabs.com." },
+      { "company": "Freelancer / různí klienti", "role": "Full Stack Developer", "period": "2011 - dosud", "what": "E-commerce, intranety a weby (Vue, React, PHP, PostgreSQL, AWS) - od platformy pro směnu kryptoměn s Web3, Ethereum a Solidity smart kontrakty pro Flexianu přes interní POS systém pro Alzu (Angular, .NET) až po vlastní projekty jako Světdovolené.cz, Actum, QEST nebo System Nine." },
+      { "company": "StreamBee", "role": "Frontend Developer", "period": "2020 - 2021", "what": "Vyvíjel jsem škálovatelné JS/TS komponenty a měl na starosti frontendový stack specializované analytické platformy pro Twitch streamery." },
+      { "company": "Apollo Soft", "role": "JavaScript Front-End Developer", "period": "2016 - 2017", "what": "Frontendový vývoj (Angular, ReactJS, Node.js) intranetových aplikací a B2B portálů pro zaměstnance a klienty, včetně komplexních úprav backendu." },
+      { "company": "Bileto Technologies", "role": "Frontend Developer", "period": "2014 - 2016", "what": "Frontend i backend systémy (Phalcon, Angular, React, Redux, Webpack) pro interní aplikace a B2B portály s komplexními backendovými úpravami." },
       { "company": "NAR marketing s.r.o.", "role": "Programátor", "period": "2010 - 2011", "what": "E-business a marketingové procesy v B2B." }
     ]
   },
   "about": {
     "title": "O mně",
-    "experience": "Zkušenosti",
     "skills": "Dovednosti",
-    "experienceList": [
-      { "role": "Senior Frontend Developer (dříve)", "company": "SatoshiLabs", "period": "2021 - 2025" },
-      { "role": "Full Stack Developer", "company": "Freelancer", "period": "2011 - dosud" },
-      { "role": "Frontend Developer", "company": "StreamBee", "period": "2020 - 2021" },
-      { "role": "JavaScript Front-End Developer", "company": "Apollo Soft", "period": "2016 - 2017" },
-      { "role": "Frontend Developer", "company": "Bileto Technologies", "period": "2014 - 2016" },
-      { "role": "Programátor", "company": "NAR marketing s.r.o.", "period": "2010 - 2011" }
-    ],
+    "experienceCta": {
+      "title": "Pracovní zkušenosti",
+      "description": "Podívejte se, kde všude jsem pracoval a co jsem tam řešil.",
+      "linkLabel": "Zobrazit zkušenosti"
+    },
     "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
     "aiTitle": "AI",
     "aiSkillsList": ["AI generování obrázků", "AI generování videí", "Práce s AI nástroji (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "Generativní AI pro produktové fotografie"]
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Vybrané weby a aplikace, které jsem navrhl a postavil od základu - od cestovních portálů přes vlastní platformy až po e-shopy.",
+    "comingSoonLabel": "Screenshot brzy doplním",
+    "viewSiteLabel": "Zobrazit web",
+    "items": [
+      { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Cestovní portál, který jsem samostatně navrhl, postavil a spravuji (PHP, Docker, PostgreSQL)." },
+      { "id": "einpresswire", "title": "EIN Presswire", "description": "Kompletní webová platforma postavená od základu na Vue.js, včetně frontendu i backendu." },
+      { "id": "apartman", "title": "Apartmán ve Španělsku", "description": "Prezentační web pro pronájem apartmánu ve Španělsku." },
+      { "id": "asoka", "title": "Asoka Events", "description": "Interní systém pro správu útulku pro zvířata ve Španělsku." },
+      { "id": "coolsocks", "title": "CoolSocks.cz", "description": "E-shop postavený od návrhu po nasazení." },
+      { "id": "spaindecoder", "title": "Spain Decoder", "description": "AI platforma pomáhající cizincům ve Španělsku rozklíčovat úřední dokumenty (NIE, rezidence, daně) a hlídat volné termíny na úřadech." },
+      { "id": "rudolfantl", "title": "RudolfAntl.eu", "description": "Web pro pronájem ubytování v Ostravě - kompletní přepis z WordPressu na vlastní řešení s výrazně lepším SEO, rychlostí načítání a administrací na míru." }
+    ]
   },
   "contact": {
     "title": "Kontakt",
@@ -185,5 +208,14 @@
   },
   "footer": {
     "credit": "Stránku pomohl vytvořit Claude ♥"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Stránka nenalezena | Roman Antl",
+      "description": "Požadovaná stránka neexistuje."
+    },
+    "heading": "Stránka nenalezena",
+    "message": "Omlouvám se, tuto stránku se nepodařilo najít. Možná byla přesunuta nebo už neexistuje.",
+    "backHome": "Zpět na hlavní stránku"
   }
 }

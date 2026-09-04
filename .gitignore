@@ -9,3 +9,4 @@ out
 .env*.local
 .debug
 .vercel/output/
+.claude/settings.local.json

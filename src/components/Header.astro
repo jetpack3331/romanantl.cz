@@ -1,6 +1,7 @@
 ---
 import type { Locale } from "@/lib/i18n";
 import { buildLocaleHref } from "@/lib/locale-links";
+import { routePath } from "@/lib/routes";
 import type { Messages } from "@/lib/get-messages";
 
 interface Props {
@@ -25,16 +26,16 @@ const nav = messages.nav;
         {nav.home}
       </a>
       <a
-        href={locale === "cs" ? "/ai-tvorba" : `/${locale}/ai-tvorba`}
+        href={locale === "cs" ? "/#portfolio" : `/${locale}#portfolio`}
+        class="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent"
+      >
+        {nav.portfolio}
+      </a>
+      <a
+        href={routePath("product", locale)}
         class="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent"
       >
         {nav.tvorba}
-      </a>
-      <a
-        href={locale === "cs" ? "/ai-tvorba#pricing" : `/${locale}/ai-tvorba#pricing`}
-        class="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent"
-      >
-        {nav.pricing}
       </a>
       <a
         href={locale === "cs" ? "/#about" : `/${locale}#about`}
@@ -43,7 +44,7 @@ const nav = messages.nav;
         {nav.about}
       </a>
       <a
-        href={locale === "cs" ? "/#employers" : `/${locale}#employers`}
+        href={routePath("experience", locale)}
         class="font-display text-sm font-medium text-pastel-dark hover:text-pastel-accent"
       >
         {nav.employers}
@@ -55,7 +56,7 @@ const nav = messages.nav;
         {nav.contact}
       </a>
     </nav>
-    <div class="flex items-center gap-1" role="group" aria-label="Jazyk / Language">
+    <div class="flex items-center gap-1" role="group" aria-label="Jazyk / Language / Idioma">
       <a
         href={buildLocaleHref(pathname, "cs")}
         hreflang="cs"
@@ -83,6 +84,20 @@ const nav = messages.nav;
         title="English"
       >
         EN
+      </a>
+      <a
+        href={buildLocaleHref(pathname, "es")}
+        hreflang="es"
+        aria-label="Español"
+        aria-current={locale === "es" ? "true" : undefined}
+        class:list={[
+          "flex h-9 w-9 items-center justify-center rounded-btn text-lg transition hover:bg-pastel-sand",
+          locale === "es" &&
+            "bg-pastel-sand/80 ring-1 ring-pastel-accent/50",
+        ]}
+        title="Español"
+      >
+        ES
       </a>
     </div>
   </div>

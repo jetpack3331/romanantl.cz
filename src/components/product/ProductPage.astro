@@ -17,12 +17,16 @@ const items = t.tvorba.items as Array<{
   variantsText?: string;
 }>;
 
-const aiHero = t.hero.aiHero as {
+const productHero = t.hero.productHero as {
   title: string;
   description: string;
   subtitle: string;
+  scalingNote: string;
 };
-const aiAvatars = t.hero.aiAvatars as { title: string; description: string };
+const productAvatars = t.hero.productAvatars as {
+  title: string;
+  description: string;
+};
 ---
 
 <div class="min-h-screen bg-pastel-cream">
@@ -30,21 +34,24 @@ const aiAvatars = t.hero.aiAvatars as { title: string; description: string };
     <section class="grid gap-10 md:grid-cols-2 md:items-start md:gap-12">
       <div>
         <h1 class="font-display text-2xl font-bold text-pastel-dark md:text-3xl">
-          {aiHero.title}
+          {productHero.title}
         </h1>
         <p class="mt-3 text-sm text-pastel-dark/90 leading-relaxed">
-          {aiHero.description}
+          {productHero.description}
         </p>
         <p class="mt-3 text-sm text-pastel-dark/85 leading-relaxed">
-          {aiHero.subtitle}
+          {productHero.subtitle}
+        </p>
+        <p class="mt-3 text-sm text-pastel-dark/85 leading-relaxed">
+          {productHero.scalingNote}
         </p>
       </div>
       <div class="card p-5">
         <h2 class="font-display text-lg font-bold text-pastel-dark">
-          {aiAvatars.title}
+          {productAvatars.title}
         </h2>
         <p class="mt-2 text-sm text-pastel-dark/85">
-          {aiAvatars.description}
+          {productAvatars.description}
         </p>
       </div>
     </section>
@@ -70,7 +77,7 @@ const aiAvatars = t.hero.aiAvatars as { title: string; description: string };
                       <div class="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
                         <img
                           src="/portfolio/dress/original.jpg"
-                          alt={`${item.imageText} — source 1`}
+                          alt={`${item.imageText} - source 1`}
                           width={300}
                           height={400}
                           class="h-full w-full object-cover"
@@ -79,7 +86,7 @@ const aiAvatars = t.hero.aiAvatars as { title: string; description: string };
                       <div class="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
                         <img
                           src="/portfolio/dress/original_2.jpg"
-                          alt={`${item.imageText} — source 2`}
+                          alt={`${item.imageText} - source 2`}
                           width={300}
                           height={400}
                           class="h-full w-full object-cover"
