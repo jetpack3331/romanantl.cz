@@ -27,6 +27,7 @@ const heroRight = t.hero.right as {
   bio: string;
   cta: string;
   techStack: string[];
+  techStackLabel: string;
 };
 
 const skillsList = t.about.skillsList as string[];
@@ -102,9 +103,9 @@ const portfolioCards = portfolioProjects.map((project) => {
           height={224}
           fetchpriority="high"
         />
-        <h2 class="font-display mt-5 text-xl font-bold text-pastel-dark md:text-2xl">
+        <h1 class="font-display mt-5 text-xl font-bold text-pastel-dark md:text-2xl">
           {heroRight.name}
-        </h2>
+        </h1>
         <p class="mt-1 text-xs font-medium text-pastel-accent uppercase tracking-wide">
           {heroRight.subtitle}
         </p>
@@ -116,7 +117,7 @@ const portfolioCards = portfolioProjects.map((project) => {
         </a>
         <div
           class="mt-6 flex flex-wrap justify-center gap-2"
-          aria-label="Technologie"
+          aria-label={heroRight.techStackLabel}
         >
           {
             heroRight.techStack.map((tech) => (

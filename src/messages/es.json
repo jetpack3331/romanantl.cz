@@ -26,7 +26,7 @@
   },
   "experienceHero": {
     "title": "Experiencia laboral",
-    "description": "Más de 14 años construyendo webs y aplicaciones: desde pequeños proyectos freelance, pasando por agencias, hasta un puesto senior en una empresa internacional de hardware. Aquí tienes un resumen de dónde he trabajado y qué he hecho en cada sitio."
+    "description": "Más de 14 años construyendo webs y aplicaciones: desde pequeños proyectos freelance, pasando por agencias, hasta un puesto senior en una empresa internacional de hardware. La mayor parte de mi carrera la he desarrollado en entornos ágiles, siguiendo la metodología Scrum. Aquí tienes un resumen de dónde he trabajado y qué he hecho en cada sitio."
   },
   "hero": {
     "left": {
@@ -63,7 +63,8 @@
       "subtitle": "Senior Full-stack Developer & AI Specialist",
       "bio": "Combino **más de 14 años** de experiencia en desarrollo con las últimas tecnologías de **IA**. He llevado a cabo proyectos exigentes, desde exchanges de criptomonedas y **Web3** hasta soluciones de e-commerce complejas.\n\nAl integrar la **IA** en el flujo de trabajo no solo entrego código, sino soluciones eficientes que ahorran tu tiempo y tu presupuesto. ¿Buscas un socio capaz de anticipar lo que viene? Estás en el lugar correcto.",
       "cta": "Contactar sin compromiso",
-      "techStack": ["React", "Vue", "Node.js", "IA"]
+      "techStack": ["React", "Vue", "Node.js", "IA"],
+      "techStackLabel": "Tecnologías"
     }
   },
   "tvorba": {
@@ -168,7 +169,7 @@
       "description": "Descubre dónde he trabajado y qué he hecho en cada proyecto.",
       "linkLabel": "Ver experiencia"
     },
-    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "Tailwind CSS", "Bootstrap", "PHP", "Nette", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
+    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "Tailwind CSS", "Bootstrap", "PHP", "Nette", "PostgreSQL", "AWS", "Linux", "Agile/Scrum", "Blockchain", "Ethereum", "Solidity"],
     "aiTitle": "IA",
     "aiSkillsList": ["Generación de imágenes con IA", "Generación de vídeos con IA", "Herramientas de IA (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "IA generativa para fotografía de producto"]
   },
