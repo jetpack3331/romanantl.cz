@@ -154,8 +154,9 @@ const portfolioCards = portfolioProjects.map((project) => {
                     alt={project.title}
                     width={800}
                     height={600}
+                    fit="contain"
                     loading="lazy"
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-contain"
                   />
                 ) : (
                   <img
@@ -164,7 +165,7 @@ const portfolioCards = portfolioProjects.map((project) => {
                     width={600}
                     height={450}
                     loading="lazy"
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-contain"
                   />
                 )}
               </div>

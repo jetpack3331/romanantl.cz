@@ -42,11 +42,12 @@ export const socialLinks = [
  * HomePage.astro) and optimized through astro:assets - no code change needed.
  */
 export const portfolioProjects = [
+  { id: "zivotvespanelsku", href: "https://zivot-ve-spanelsku.cz" },
   { id: "svetdovolene", href: "https://svetdovolene.cz" },
-  { id: "einpresswire", href: "https://www.einpresswire.com" },
   { id: "apartman", href: "https://apartmanvespanelsku.cz" },
   { id: "asoka", href: "https://asoka-events.es" },
   { id: "coolsocks", href: "https://coolsocks.cz" },
   { id: "spaindecoder", href: "https://spaindecoder.es" },
   { id: "rudolfantl", href: "https://rudolfantl.eu" },
+  { id: "einpresswire", href: "https://www.einpresswire.com" },
 ] as const;

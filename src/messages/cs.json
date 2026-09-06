@@ -168,7 +168,7 @@
       "description": "Podívejte se, kde všude jsem pracoval a co jsem tam řešil.",
       "linkLabel": "Zobrazit zkušenosti"
     },
-    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "PHP", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
+    "skillsList": ["JavaScript", "TypeScript", "Node.js", "React", "Vue.js", "Tailwind CSS", "Bootstrap", "PHP", "Nette", "PostgreSQL", "AWS", "Linux", "Blockchain", "Ethereum", "Solidity"],
     "aiTitle": "AI",
     "aiSkillsList": ["AI generování obrázků", "AI generování videí", "Práce s AI nástroji (Claude, Gemini, ChatGPT, Cursor)", "ComfyUI", "Generativní AI pro produktové fotografie"]
   },
@@ -178,6 +178,7 @@
     "comingSoonLabel": "Screenshot brzy doplním",
     "viewSiteLabel": "Zobrazit web",
     "items": [
+      { "id": "zivotvespanelsku", "title": "Život ve Španělsku", "description": "Informační portál o bydlení a solární energii na Costa Blanca - pomáhá najít domov u moře, ušetřit za elektřinu a zorientovat se v životě ve Španělsku." },
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Cestovní portál, který jsem samostatně navrhl, postavil a spravuji (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "Kompletní webová platforma postavená od základu na Vue.js, včetně frontendu i backendu." },
       { "id": "apartman", "title": "Apartmán ve Španělsku", "description": "Prezentační web pro pronájem apartmánu ve Španělsku." },
