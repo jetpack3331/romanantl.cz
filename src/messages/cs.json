@@ -179,6 +179,7 @@
     "comingSoonLabel": "Screenshot brzy doplním",
     "viewSiteLabel": "Zobrazit web",
     "items": [
+      { "id": "tsfyzioterapie", "title": "TS Fyzioterapie", "description": "Web fyzioterapeutky v Ostravě - kompletní předělání původního webu: nový design, vyšší rychlost načítání, SEO optimalizace a administrace na míru klientce." },
       { "id": "zivotvespanelsku", "title": "Život ve Španělsku", "description": "Informační portál o bydlení a solární energii na Costa Blanca - pomáhá najít domov u moře, ušetřit za elektřinu a zorientovat se v životě ve Španělsku." },
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Cestovní portál, který jsem samostatně navrhl, postavil a spravuji (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "Kompletní webová platforma postavená od základu na Vue.js, včetně frontendu i backendu." },

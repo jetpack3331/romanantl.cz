@@ -179,6 +179,7 @@
     "comingSoonLabel": "Screenshot coming soon",
     "viewSiteLabel": "View site",
     "items": [
+      { "id": "tsfyzioterapie", "title": "TS Fyzioterapie", "description": "A physiotherapist's website in Ostrava - a complete rebuild of the original site: a fresh design, faster load times, SEO optimization and an admin tailored to the client." },
       { "id": "zivotvespanelsku", "title": "Život ve Španělsku", "description": "An information portal about housing and solar energy on the Costa Blanca - helping people find a home by the sea, cut electricity bills and navigate life in Spain." },
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "A travel portal I independently designed, built and maintain (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "A complete web platform built from scratch with Vue.js, covering both frontend and backend." },

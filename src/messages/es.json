@@ -179,6 +179,7 @@
     "comingSoonLabel": "Captura próximamente",
     "viewSiteLabel": "Ver sitio",
     "items": [
+      { "id": "tsfyzioterapie", "title": "TS Fyzioterapie", "description": "Web de una fisioterapeuta en Ostrava (República Checa), rehecha por completo: nuevo diseño, mayor velocidad de carga, optimización SEO y un panel de administración a medida de la clienta." },
       { "id": "zivotvespanelsku", "title": "Život ve Španělsku", "description": "Portal informativo sobre vivienda y energía solar en la Costa Blanca: ayuda a encontrar una casa junto al mar, ahorrar en la factura de la luz y orientarse en la vida en España." },
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Portal de viajes que diseñé, construí y mantengo de forma independiente (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "Plataforma web completa construida desde cero con Vue.js, tanto en frontend como en backend." },
