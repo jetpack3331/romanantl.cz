@@ -46,7 +46,6 @@ export const portfolioProjects = [
   { id: "zivotvespanelsku", href: "https://zivot-ve-spanelsku.cz" },
   { id: "svetdovolene", href: "https://svetdovolene.cz" },
   { id: "apartman", href: "https://apartmanvespanelsku.cz" },
-  { id: "asoka", href: "https://asoka-events.es" },
   { id: "coolsocks", href: "https://coolsocks.cz" },
   { id: "spaindecoder", href: "https://spaindecoder.es" },
   { id: "rudolfantl", href: "https://rudolfantl.eu" },

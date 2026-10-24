@@ -184,7 +184,6 @@
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "A travel portal I independently designed, built and maintain (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "A complete web platform built from scratch with Vue.js, covering both frontend and backend." },
       { "id": "apartman", "title": "Apartmán ve Španělsku", "description": "A presentation website for a holiday apartment rental in Spain." },
-      { "id": "asoka", "title": "Asoka Events", "description": "An internal management system for an animal shelter in Spain." },
       { "id": "coolsocks", "title": "CoolSocks.cz", "description": "An e-commerce store built from design to deployment." },
       { "id": "spaindecoder", "title": "Spain Decoder", "description": "An AI platform that helps expats in Spain decode official documents (NIE, residency, tax forms) and track free appointment slots at government offices." },
       { "id": "rudolfantl", "title": "RudolfAntl.eu", "description": "An accommodation rental website in Ostrava, rebuilt from WordPress into a custom solution with much better SEO, load times and a purpose-built admin." }

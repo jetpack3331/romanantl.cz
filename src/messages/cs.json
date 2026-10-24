@@ -184,7 +184,6 @@
       { "id": "svetdovolene", "title": "Světdovolené.cz", "description": "Cestovní portál, který jsem samostatně navrhl, postavil a spravuji (PHP, Docker, PostgreSQL)." },
       { "id": "einpresswire", "title": "EIN Presswire", "description": "Kompletní webová platforma postavená od základu na Vue.js, včetně frontendu i backendu." },
       { "id": "apartman", "title": "Apartmán ve Španělsku", "description": "Prezentační web pro pronájem apartmánu ve Španělsku." },
-      { "id": "asoka", "title": "Asoka Events", "description": "Interní systém pro správu útulku pro zvířata ve Španělsku." },
       { "id": "coolsocks", "title": "CoolSocks.cz", "description": "E-shop postavený od návrhu po nasazení." },
       { "id": "spaindecoder", "title": "Spain Decoder", "description": "AI platforma pomáhající cizincům ve Španělsku rozklíčovat úřední dokumenty (NIE, rezidence, daně) a hlídat volné termíny na úřadech." },
       { "id": "rudolfantl", "title": "RudolfAntl.eu", "description": "Web pro pronájem ubytování v Ostravě - kompletní přepis z WordPressu na vlastní řešení s výrazně lepším SEO, rychlostí načítání a administrací na míru." }
