@@ -10,3 +10,5 @@ out
 .debug
 .vercel/output/
 .claude/settings.local.json
+# CRM data (SQLite database, local dev mail and imports)
+data/

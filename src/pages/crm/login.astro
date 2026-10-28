@@ -1,0 +1,54 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+import { hasCrmSession } from "@/lib/crm/auth";
+
+export const prerender = false;
+
+if (hasCrmSession(Astro.cookies)) {
+  return Astro.redirect("/crm");
+}
+---
+
+<CrmLayout title="CRM - přihlášení">
+  <main class="mx-auto flex min-h-screen max-w-sm flex-col justify-center px-6">
+    <h1 class="font-display text-2xl font-bold">CRM</h1>
+    <form id="crm-login" class="card mt-6 flex flex-col gap-4 p-6">
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Heslo</span>
+        <input
+          type="password"
+          name="password"
+          required
+          autocomplete="current-password"
+          class="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2"
+        />
+      </label>
+      <button type="submit" class="btn-primary self-start">Přihlásit</button>
+      <p id="crm-login-error" class="hidden text-sm text-red-600" role="alert"></p>
+    </form>
+  </main>
+</CrmLayout>
+
+<script>
+  const form = document.getElementById("crm-login") as HTMLFormElement;
+  const errorEl = document.getElementById("crm-login-error") as HTMLElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    errorEl.classList.add("hidden");
+    const password = String(new FormData(form).get("password") ?? "");
+    const res = await fetch("/api/crm/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    if (res.ok) {
+      window.location.href = "/crm";
+      return;
+    }
+    const data = await res.json().catch(() => ({}));
+    errorEl.textContent =
+      typeof data.error === "string" ? data.error : "Přihlášení selhalo";
+    errorEl.classList.remove("hidden");
+  });
+</script>

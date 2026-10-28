@@ -1,0 +1,247 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+import {
+  countClientsByStatus,
+  listClients,
+  splitEmails,
+  type ClientFilters,
+} from "@/lib/crm/clients/repository";
+import {
+  nextClientSort,
+  parseClientSort,
+  type ClientSortKey,
+} from "@/lib/crm/clients/sorting";
+import { CLIENT_STATUSES, WEB_POTENTIALS, statusBadgeClass } from "@/lib/crm/clients/statuses";
+import { getDb } from "@/lib/crm/db";
+import { formatCrmDate, safeHref, todayInPrague } from "@/lib/crm/format";
+
+export const prerender = false;
+
+const params = Astro.url.searchParams;
+const today = todayInPrague();
+const filters: ClientFilters = {
+  q: params.get("q")?.trim() || undefined,
+  status: params.get("stav") || undefined,
+  potential: params.get("potencial") || undefined,
+  hasEmail: params.get("email") === "1",
+  dueBy: params.get("dnes") === "1" ? today : undefined,
+};
+
+// null = no column selected, the list uses the default order
+const sort = parseClientSort(params);
+
+const db = getDb();
+const clients = listClients(db, filters, sort);
+const statusCounts = countClientsByStatus(db);
+const total = Object.values(statusCounts).reduce((sum, count) => sum + count, 0);
+const isFiltered = Object.values(filters).some(Boolean);
+
+const statusHref = (status: string | null) => {
+  const next = new URLSearchParams(params);
+  if (status) next.set("stav", status);
+  else next.delete("stav");
+  const query = next.toString();
+  return query ? `?${query}` : "/crm/klienti";
+};
+// Query string with only the sort, so clearing filters keeps the chosen order
+const sortQuery = sort ? `?razeni=${sort.key}&smer=${sort.direction}` : "";
+const sortHref = (key: ClientSortKey) => {
+  const next = new URLSearchParams(params);
+  const target = nextClientSort(sort, key);
+  if (target) {
+    next.set("razeni", target.key);
+    next.set("smer", target.direction);
+  } else {
+    next.delete("razeni");
+    next.delete("smer");
+  }
+  const query = next.toString();
+  return query ? `?${query}` : "/crm/klienti";
+};
+const sortableColumns: { key: ClientSortKey; label: string; className?: string }[] = [
+  { key: "firma", label: "Firma" },
+  { key: "kontakt", label: "Kontakt" },
+  { key: "web", label: "Web" },
+  { key: "stav", label: "Stav" },
+  { key: "krok", label: "Další krok", className: "min-w-32" },
+];
+const displayUrl = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+---
+
+<CrmLayout title="Klienti" nav>
+  <main class="mx-auto max-w-7xl px-6 py-8">
+    <div class="flex flex-wrap items-baseline justify-between gap-4">
+      <h1 class="font-display text-2xl font-bold">Klienti ({clients.length}{isFiltered && ` z ${total}`})</h1>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="/crm/klienti?dnes=1" class="text-sm underline">Dnes volat / na řadě</a>
+        <a href="/crm/klienti/novy" class="btn-primary text-sm">+ Přidat klienta</a>
+      </div>
+    </div>
+
+    {
+      total === 0 && (
+        <p class="mt-6 rounded-btn bg-pastel-sand p-4 text-sm">
+          Zatím tu nejsou žádní klienti. <a href="/crm/klienti/import" class="underline">Naimportujte CSV</a>{" "}
+          z tabulky leadů.
+        </p>
+      )
+    }
+
+    <nav class="mt-4 flex flex-wrap gap-2 text-xs">
+      <a
+        href={statusHref(null)}
+        class={`rounded-btn px-2 py-1 ${!filters.status ? "bg-pastel-accent" : "bg-pastel-sand"}`}
+      >
+        Vše ({total})
+      </a>
+      {
+        CLIENT_STATUSES.filter((status) => statusCounts[status]).map((status) => (
+          <a
+            href={statusHref(status)}
+            class={`rounded-btn px-2 py-1 ${filters.status === status ? "bg-pastel-accent" : "bg-pastel-sand"}`}
+          >
+            {status} ({statusCounts[status]})
+          </a>
+        ))
+      }
+    </nav>
+
+    <form method="get" class="mt-4 flex flex-wrap items-end gap-3 text-sm">
+      {filters.status && <input type="hidden" name="stav" value={filters.status} />}
+      {sort && <input type="hidden" name="razeni" value={sort.key} />}
+      {sort && <input type="hidden" name="smer" value={sort.direction} />}
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-pastel-dark/60">Hledat</span>
+        <input
+          type="search"
+          name="q"
+          value={filters.q ?? ""}
+          placeholder="firma, web, e-mail, telefon, poznámka"
+          class="w-72 rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-1.5"
+        />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-xs text-pastel-dark/60">Potenciál webu</span>
+        <select name="potencial" class="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-1.5">
+          <option value="">vše</option>
+          {WEB_POTENTIALS.map((potential) => (
+            <option value={potential} selected={filters.potential === potential}>{potential}</option>
+          ))}
+        </select>
+      </label>
+      <label class="flex items-center gap-2 pb-1.5">
+        <input type="checkbox" name="email" value="1" checked={filters.hasEmail} /> jen s e-mailem
+      </label>
+      <label class="flex items-center gap-2 pb-1.5">
+        <input type="checkbox" name="dnes" value="1" checked={Boolean(filters.dueBy)} /> další krok do dneška
+      </label>
+      <button type="submit" class="btn-primary py-1.5">Filtrovat</button>
+      {isFiltered && <a href={`/crm/klienti${sortQuery}`} class="pb-1.5 underline">zrušit filtry</a>}
+    </form>
+
+    <div class="mt-6 overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead class="text-pastel-dark/60">
+          <tr>
+            {
+              sortableColumns.map(({ key, label, className }) => {
+                const active = sort?.key === key ? sort : null;
+                return (
+                  <th
+                    class={`py-2 pr-4 font-medium ${className ?? ""}`}
+                    aria-sort={active ? (active.direction === "asc" ? "ascending" : "descending") : "none"}
+                  >
+                    <a
+                      href={sortHref(key)}
+                      class={`inline-flex items-center gap-1 hover:text-pastel-dark ${active ? "text-pastel-dark" : ""}`}
+                      title={
+                        !active
+                          ? `Seřadit sestupně: ${label}`
+                          : active.direction === "desc"
+                            ? `Seřadit vzestupně: ${label}`
+                            : "Zrušit řazení"
+                      }
+                    >
+                      {label}
+                      <span aria-hidden="true">{active ? (active.direction === "asc" ? "▲" : "▼") : "↕"}</span>
+                    </a>
+                  </th>
+                );
+              })
+            }
+            <th class="py-2 font-medium"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            clients.map((client) => {
+              const emails = splitEmails(client.emails);
+              return (
+                <tr class="border-t border-pastel-sand align-top">
+                  <td class="py-2 pr-4">
+                    <a href={`/crm/klienti/${client.id}`} class="font-semibold underline">
+                      {client.name}
+                    </a>
+                    {client.callNote && (
+                      <p class="mt-1 max-w-56 truncate text-xs text-pastel-dark/60" title={client.callNote}>
+                        {client.callNote}
+                      </p>
+                    )}
+                  </td>
+                  <td class="py-2 pr-4">
+                    {client.phone && (
+                      <a href={`tel:${client.phone.replace(/\s/g, "")}`} class="block whitespace-nowrap">
+                        {client.phone}
+                      </a>
+                    )}
+                    {emails.length > 0 && (
+                      <span class="block text-xs text-pastel-dark/70">
+                        {emails[0]}
+                        {emails.length > 1 && ` +${emails.length - 1}`}
+                      </span>
+                    )}
+                  </td>
+                  <td class="py-2 pr-4">
+                    {client.website && (
+                      <a href={safeHref(client.website)} target="_blank" rel="noopener noreferrer" class="block max-w-56 truncate underline">
+                        {displayUrl(client.website)}
+                      </a>
+                    )}
+                    <span class="text-xs text-pastel-dark/60">
+                      {client.webPotential}
+                      {client.webScore !== null && ` · skóre ${client.webScore}`}
+                      {client.platform && ` · ${client.platform}`}
+                    </span>
+                  </td>
+                  <td class="py-2 pr-4">
+                    <span class={`whitespace-nowrap rounded-btn px-2 py-0.5 text-xs ${statusBadgeClass(client.status)}`}>
+                      {client.status}
+                    </span>
+                  </td>
+                  <td class="py-2 pr-4 text-xs">
+                    {client.nextStep}
+                    {client.nextStepDate && (
+                      <span class={`block ${client.nextStepDate <= today ? "font-semibold text-red-700" : "text-pastel-dark/60"}`}>
+                        {formatCrmDate(client.nextStepDate)}
+                      </span>
+                    )}
+                  </td>
+                  <td class="whitespace-nowrap py-2 text-right">
+                    <a href={`/crm/klienti/${client.id}`} class="mr-3 text-xs underline">
+                      Upravit
+                    </a>
+                    {emails.length > 0 && client.status !== "nevolat" && (
+                      <a href={`/crm/email?klient=${client.id}`} class="btn-primary inline-block px-3 py-1 text-xs">
+                        Napsat e-mail
+                      </a>
+                    )}
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+  </main>
+</CrmLayout>

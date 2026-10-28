@@ -1,0 +1,83 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+
+export const prerender = false;
+---
+
+<CrmLayout title="Import klientů" nav>
+  <main class="mx-auto max-w-3xl px-6 py-8">
+    <h1 class="font-display text-2xl font-bold">Import klientů z CSV</h1>
+    <div class="mt-3 flex flex-col gap-2 text-sm text-pastel-dark/80">
+      <p>
+        V Google Sheets otevřete list s leady a zvolte <em>Soubor → Stáhnout → CSV</em>. Funguje i
+        <code>leady_*.csv</code> nebo <code>companies_*.csv</code> ze scraperu.
+      </p>
+      <p>
+        Import lze opakovat: klienti se párují podle Google Maps (případně webu nebo názvu). Kontaktní a auditní
+        údaje se aktualizují z neprázdných buněk, ale stav, další krok a poznámky se doplní jen tam, kde v CRM
+        zatím nic není - práce v CRM se tedy nepřepíše.
+      </p>
+    </div>
+
+    <form id="import-form" class="card mt-6 flex flex-col gap-4 p-5">
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">CSV soubor</span>
+        <input type="file" name="file" accept=".csv,text/csv" required />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Zdroj (nepovinné)</span>
+        <input
+          name="source"
+          placeholder="např. leady Ostrava 702 00"
+          class="rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2"
+        />
+      </label>
+      <button type="submit" class="btn-primary self-start">Importovat</button>
+      <p id="import-result" class="text-sm" role="status"></p>
+    </form>
+  </main>
+</CrmLayout>
+
+<script>
+  const form = document.getElementById("import-form") as HTMLFormElement;
+  const result = document.getElementById("import-result") as HTMLElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const file = data.get("file");
+    if (!(file instanceof File) || file.size === 0) {
+      result.textContent = "Vyberte CSV soubor";
+      result.className = "text-sm text-red-600";
+      return;
+    }
+    result.textContent = "Importuji…";
+    result.className = "text-sm";
+    const res = await fetch("/api/crm/clients/import", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        csv: await file.text(),
+        source: String(data.get("source") ?? "") || file.name,
+      }),
+    }).catch(() => null);
+    const body = await res?.json().catch(() => ({}));
+    if (res?.ok) {
+      result.innerHTML = "";
+      result.append(
+        `Hotovo: ${body.created} nových, ${body.updated} aktualizovaných` +
+          (body.skipped ? `, ${body.skipped} řádků bez názvu přeskočeno` : "") +
+          ". "
+      );
+      const link = document.createElement("a");
+      link.href = "/crm/klienti";
+      link.className = "underline";
+      link.textContent = "Zobrazit klienty";
+      result.append(link);
+      result.className = "text-sm text-pastel-accent-hover";
+    } else {
+      result.textContent = body?.error ?? "Import selhal";
+      result.className = "text-sm text-red-600";
+    }
+  });
+</script>

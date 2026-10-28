@@ -1,0 +1,53 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+import { CrmEmailForm, type EmailFormClient } from "@/components/react/CrmEmailForm";
+import { getClient, splitEmails } from "@/lib/crm/clients/repository";
+import { getCrmSmtpConfig } from "@/lib/crm/config";
+import { getDb } from "@/lib/crm/db";
+import { isUnsubscribed } from "@/lib/crm/outreach/repository";
+import { listSenderProfiles } from "@/lib/crm/outreach/sender-profiles";
+
+export const prerender = false;
+
+const db = getDb();
+const clientId = Number(Astro.url.searchParams.get("klient"));
+const record = Number.isInteger(clientId) && clientId > 0 ? getClient(db, clientId) : null;
+const client: EmailFormClient | null = record
+  ? {
+      id: record.id,
+      name: record.name,
+      website: record.website,
+      // Unsubscribed addresses are left out so they are never prefilled
+      emails: splitEmails(record.emails).filter((email) => !isUnsubscribed(db, email)),
+      webPotential: record.webPotential,
+      webProblems: record.webProblems,
+    }
+  : null;
+const senderProfiles = listSenderProfiles(db);
+const smtpConfigured = getCrmSmtpConfig() !== null;
+---
+
+<CrmLayout title={client ? `E-mail - ${client.name}` : "Napsat e-mail"} nav>
+  <main class="mx-auto max-w-7xl px-6 py-8">
+    <h1 class="font-display text-2xl font-bold">
+      E-mail před telefonátem{client && ` - ${client.name}`}
+    </h1>
+    {
+      !smtpConfigured && (
+        <p class="mt-4 rounded-btn bg-red-100 p-3 text-sm text-red-700">
+          SMTP není nakonfigurované (CRM_SMTP_HOST, CRM_SMTP_USER, CRM_SMTP_PASSWORD), e-maily nepůjde odeslat.
+        </p>
+      )
+    }
+    {
+      record && record.status === "nevolat" && (
+        <p class="mt-4 rounded-btn bg-red-100 p-3 text-sm text-red-700">
+          Klient má stav „nevolat“. Neposílejte mu prosím další nabídky.
+        </p>
+      )
+    }
+    <div class="mt-6">
+      <CrmEmailForm client:load client={client} senderProfiles={senderProfiles} />
+    </div>
+  </main>
+</CrmLayout>

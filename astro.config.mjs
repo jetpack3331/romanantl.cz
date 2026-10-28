@@ -16,7 +16,14 @@ export default defineConfig({
   trailingSlash: "never",
   output: "server",
   adapter: node({ mode: "standalone" }),
-  integrations: [react(), tailwind({ applyBaseStyles: false }), sitemap()],
+  integrations: [
+    react(),
+    tailwind({ applyBaseStyles: false }),
+    // Private CRM and the unsubscribe page stay out of the sitemap
+    sitemap({
+      filter: (page) => !/\/(crm|odhlaseni)(\/|$)/.test(new URL(page).pathname),
+    }),
+  ],
   vite: {
     resolve: {
       alias: {

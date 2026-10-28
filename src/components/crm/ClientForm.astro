@@ -1,0 +1,170 @@
+---
+import type { Client } from "@/lib/crm/clients/repository";
+import { CLIENT_STATUSES, DEFAULT_STATUS, WEB_POTENTIALS } from "@/lib/crm/clients/statuses";
+
+interface Props {
+  /** Client to edit; without it the form creates a new client. */
+  client?: Client;
+}
+
+const { client } = Astro.props;
+
+type Field = {
+  name: string;
+  label: string;
+  value: string;
+  type?: "text" | "number" | "date" | "url" | "textarea";
+  hint?: string;
+  placeholder?: string;
+  wide?: boolean;
+  inputmode?: "decimal";
+};
+
+const text = (value: string | null | undefined) => value ?? "";
+const number = (value: number | null | undefined) => (value === null || value === undefined ? "" : String(value));
+
+// Unknown statuses from an import stay selectable
+const currentStatus = client?.status ?? DEFAULT_STATUS;
+const statuses = (CLIENT_STATUSES as readonly string[]).includes(currentStatus)
+  ? CLIENT_STATUSES
+  : [...CLIENT_STATUSES, currentStatus];
+
+const pipelineFields: Field[] = [
+  { name: "calledBy", label: "Volal(a)", value: text(client?.calledBy) },
+  { name: "nextStep", label: "Další krok", value: text(client?.nextStep), placeholder: "např. zavolat, poslat nabídku" },
+  { name: "nextStepDate", label: "Datum dalšího kroku", value: text(client?.nextStepDate), type: "date" },
+  { name: "callNote", label: "Poznámka z hovoru", value: text(client?.callNote), type: "textarea", wide: true },
+];
+
+const contactFields: Field[] = [
+  { name: "name", label: "Název firmy *", value: text(client?.name), wide: true },
+  { name: "phone", label: "Telefon", value: text(client?.phone) },
+  { name: "website", label: "Web", value: text(client?.website), placeholder: "https://…" },
+  {
+    name: "emails",
+    label: "E-maily",
+    value: text(client?.emails),
+    hint: "Více adres oddělte čárkou, první se předvyplní do e-mailu.",
+    wide: true,
+  },
+  { name: "address", label: "Adresa", value: text(client?.address), wide: true },
+  { name: "googleMapsUrl", label: "Google Maps", value: text(client?.googleMapsUrl), type: "url", wide: true },
+  { name: "rating", label: "Hodnocení Google (0-5)", value: number(client?.rating), inputmode: "decimal" },
+  { name: "reviewCount", label: "Počet recenzí", value: number(client?.reviewCount), type: "number" },
+];
+
+const auditFields: Field[] = [
+  { name: "webScore", label: "Skóre webu (0-100)", value: number(client?.webScore), type: "number", hint: "Vyšší = horší web = lepší lead." },
+  { name: "mobilePerformance", label: "Výkon mobil (0-100)", value: number(client?.mobilePerformance), type: "number" },
+  { name: "platform", label: "Platforma", value: text(client?.platform), placeholder: "WordPress, Wix, …" },
+  { name: "webProblems", label: "Problémy webu", value: text(client?.webProblems), type: "textarea", wide: true },
+];
+
+const inputClass = "rounded-btn border border-pastel-sage bg-pastel-cream px-3 py-2";
+---
+
+<form
+  id="client-form"
+  data-id={client?.id ?? ""}
+  class="card flex flex-col gap-4 p-5"
+  novalidate
+>
+  {
+    [
+      { title: "Obchodní případ", fields: pipelineFields, status: true },
+      { title: "Kontakt", fields: contactFields, status: false },
+      { title: "Web a audit", fields: auditFields, status: false, potential: true },
+    ].map((section) => (
+      <fieldset class="grid gap-4 sm:grid-cols-2">
+        <legend class="font-display mb-3 text-lg font-bold">{section.title}</legend>
+        {section.status && (
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Stav</span>
+            <select name="status" class={inputClass}>
+              {statuses.map((status) => (
+                <option value={status} selected={status === currentStatus}>
+                  {status}
+                </option>
+              ))}
+            </select>
+            <span data-error-for="status" class="text-sm text-red-600" />
+          </label>
+        )}
+        {section.potential && (
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Potenciál webu</span>
+            <select name="webPotential" class={inputClass}>
+              <option value="">-</option>
+              {WEB_POTENTIALS.map((potential) => (
+                <option value={potential} selected={potential === client?.webPotential}>
+                  {potential}
+                </option>
+              ))}
+            </select>
+            <span data-error-for="webPotential" class="text-sm text-red-600" />
+          </label>
+        )}
+        {section.fields.map((field) => (
+          <label class={`flex flex-col gap-1 ${field.wide ? "sm:col-span-2" : ""}`}>
+            <span class="text-sm font-medium">{field.label}</span>
+            {field.type === "textarea" ? (
+              <textarea name={field.name} rows="4" class={inputClass}>{field.value}</textarea>
+            ) : (
+              <input
+                type={field.type ?? "text"}
+                name={field.name}
+                value={field.value}
+                placeholder={field.placeholder}
+                inputmode={field.inputmode}
+                class={inputClass}
+              />
+            )}
+            {field.hint && <span class="text-xs text-pastel-dark/60">{field.hint}</span>}
+            <span data-error-for={field.name} class="text-sm text-red-600" />
+          </label>
+        ))}
+      </fieldset>
+    ))
+  }
+
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="submit" class="btn-primary">{client ? "Uložit změny" : "Vytvořit klienta"}</button>
+    <p id="client-form-result" class="text-sm" role="status"></p>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById("client-form") as HTMLFormElement;
+  const result = document.getElementById("client-form-result") as HTMLElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    form.querySelectorAll<HTMLElement>("[data-error-for]").forEach((el) => (el.textContent = ""));
+    result.textContent = "Ukládám…";
+    result.className = "text-sm";
+
+    const id = form.dataset.id;
+    const res = await fetch(id ? `/api/crm/clients/${id}` : "/api/crm/clients", {
+      method: id ? "PATCH" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Object.fromEntries(new FormData(form))),
+    }).catch(() => null);
+    if (res?.status === 401) {
+      window.location.href = "/crm/login";
+      return;
+    }
+    const data = await res?.json().catch(() => ({}));
+    if (res?.ok) {
+      window.location.href = `/crm/klienti/${data.client.id}?ulozeno=1`;
+      return;
+    }
+    const fieldErrors: Record<string, string> = data?.fieldErrors ?? {};
+    for (const [field, message] of Object.entries(fieldErrors)) {
+      const target = form.querySelector<HTMLElement>(`[data-error-for="${field}"]`);
+      if (target) target.textContent = message;
+    }
+    result.textContent = data?.error ?? "Uložení selhalo";
+    result.className = "text-sm text-red-600";
+    form.querySelector<HTMLElement>("[data-error-for]:not(:empty)")?.scrollIntoView({ block: "center" });
+  });
+</script>

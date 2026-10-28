@@ -37,7 +37,8 @@ RUN npm ci --omit=dev && npm cache clean --force
 
 COPY --from=builder /app/dist ./dist
 
-RUN chown -R node:node /app
+# CRM data dir; mount a volume here so it survives redeploys
+RUN mkdir -p /app/data && chown -R node:node /app
 
 USER node
 

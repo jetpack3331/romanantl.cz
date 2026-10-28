@@ -1,0 +1,70 @@
+---
+import "@/styles/global.css";
+import { CRM_NAVIGATION, activeNavigationHref } from "@/lib/crm/navigation";
+
+interface Props {
+  title: string;
+  /** Show the CRM navigation (off for the login and public unsubscribe pages). */
+  nav?: boolean;
+}
+
+const { title, nav = false } = Astro.props;
+const activeHref = activeNavigationHref(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="cs" style="color-scheme: light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+  </head>
+  <body class="font-sans antialiased">
+    {
+      nav && (
+        <header class="border-b border-pastel-sand bg-pastel-cream">
+          <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3">
+            <a href="/crm" class="font-display font-bold">CRM</a>
+            <nav class="flex flex-wrap gap-4 text-sm">
+              {CRM_NAVIGATION.map(({ href, label }) => (
+                <a
+                  href={href}
+                  class={
+                    href === activeHref
+                      ? "font-semibold text-pastel-accent-hover"
+                      : "hover:text-pastel-accent-hover"
+                  }
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <button id="crm-logout" type="button" class="ml-auto text-sm underline hover:text-pastel-accent">
+              Odhlásit se
+            </button>
+          </div>
+        </header>
+      )
+    }
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-display: system-ui, sans-serif;
+    --font-sans: system-ui, sans-serif;
+  }
+</style>
+
+<script>
+  document.getElementById("crm-logout")?.addEventListener("click", async () => {
+    await fetch("/api/crm/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "{}",
+    });
+    window.location.href = "/crm/login";
+  });
+</script>

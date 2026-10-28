@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "check": "astro check",
     "check:web": "bash scripts/check-web.sh",
+    "dev:smtp": "node scripts/dev-smtp.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "dead-code": "knip"

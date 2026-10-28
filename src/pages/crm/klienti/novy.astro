@@ -1,0 +1,16 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+import ClientForm from "@/components/crm/ClientForm.astro";
+
+export const prerender = false;
+---
+
+<CrmLayout title="Nový klient" nav>
+  <main class="mx-auto max-w-4xl px-6 py-8">
+    <a href="/crm/klienti" class="text-sm underline">← Klienti</a>
+    <h1 class="font-display mt-2 text-2xl font-bold">Nový klient</h1>
+    <div class="mt-6">
+      <ClientForm />
+    </div>
+  </main>
+</CrmLayout>

@@ -1,0 +1,67 @@
+---
+import CrmLayout from "@/layouts/CrmLayout.astro";
+import { getCrmAuthConfig } from "@/lib/crm/config";
+import { readUnsubscribeToken } from "@/lib/crm/tokens";
+
+export const prerender = false;
+
+const token = Astro.url.searchParams.get("t") ?? "";
+const config = getCrmAuthConfig();
+const email = config ? readUnsubscribeToken(token, config.secret) : null;
+if (!email) {
+  Astro.response.status = 400;
+}
+---
+
+<CrmLayout title="Odhlášení z e-mailů">
+  <main class="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6">
+    <div class="card p-6">
+      <h1 class="font-display text-2xl font-bold">Odhlášení z e-mailů</h1>
+      {
+        email ? (
+          <div id="unsubscribe" data-token={token}>
+            <p class="mt-3 text-sm">
+              Po potvrzení už na adresu <strong>{email}</strong> nebudeme posílat
+              žádné další nabídky.
+            </p>
+            <button id="unsubscribe-button" type="button" class="btn-primary mt-5">
+              Odhlásit
+            </button>
+            <p id="unsubscribe-result" class="mt-4 hidden text-sm" role="status" />
+          </div>
+        ) : (
+          <p class="mt-3 text-sm">
+            Odkaz pro odhlášení je neplatný nebo neúplný. Zkuste ho prosím
+            zkopírovat z e-mailu celý, případně nám jednoduše odpovězte na
+            e-mail a odhlásíme Vás ručně.
+          </p>
+        )
+      }
+    </div>
+  </main>
+</CrmLayout>
+
+<script>
+  const container = document.getElementById("unsubscribe");
+  const button = document.getElementById("unsubscribe-button") as HTMLButtonElement | null;
+  const result = document.getElementById("unsubscribe-result");
+
+  button?.addEventListener("click", async () => {
+    if (!container || !result) return;
+    button.disabled = true;
+    const res = await fetch("/api/unsubscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: container.dataset.token }),
+    }).catch(() => null);
+    result.classList.remove("hidden");
+    if (res?.ok) {
+      button.classList.add("hidden");
+      result.textContent = "Hotovo, byli jste odhlášeni. Už se neozveme.";
+    } else {
+      button.disabled = false;
+      result.textContent =
+        "Odhlášení se nepodařilo. Zkuste to prosím znovu, nebo nám odpovězte na e-mail.";
+    }
+  });
+</script>
