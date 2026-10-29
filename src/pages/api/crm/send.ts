@@ -62,6 +62,8 @@ export const POST: APIRoute = async ({ request }) => {
     host: smtp.host,
     port: smtp.port,
     secure: smtp.port === 465,
+    // Other ports (587) must upgrade via STARTTLS; never send the password in plain text
+    requireTLS: smtp.port !== 465,
     auth: { user: smtp.user, pass: smtp.password },
   });
 
