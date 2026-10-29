@@ -8,6 +8,7 @@ import {
 import {
   DEFAULT_CLIENT_SORT,
   clientOrderBy,
+  defaultClientOrderBy,
   type ClientSort,
 } from "@/lib/crm/clients/sorting";
 
@@ -150,7 +151,7 @@ export function listClients(
     params.push(filters.dueBy);
   }
   const sql = `${SELECT_CLIENT}${where.length ? ` WHERE ${where.join(" AND ")}` : ""}
-    ORDER BY ${clientOrderBy(sort)}`;
+    ORDER BY ${selectedSort ? clientOrderBy(selectedSort) : defaultClientOrderBy()}`;
   const clients = db.prepare(sql).all(...params).map(toClient);
   if (sort.key !== "firma") return clients;
   // SQLite orders by code point (Š after Z); Czech collation needs Intl

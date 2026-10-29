@@ -37,6 +37,8 @@ net
         buffer = buffer.slice(lineEnd + 2);
         if (command === "EHLO") socket.write("250-dev-smtp\r\n250 AUTH PLAIN LOGIN\r\n");
         else if (command === "AUTH") socket.write("235 OK\r\n");
+        // No TLS support: refuse STARTTLS so clients fail fast instead of hanging
+        else if (command === "STAR") socket.write("502 STARTTLS not supported\r\n");
         else if (command === "DATA") {
           inData = true;
           socket.write("354 End data with <CR><LF>.<CR><LF>\r\n");

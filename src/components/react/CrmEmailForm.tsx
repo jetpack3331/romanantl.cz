@@ -8,6 +8,8 @@ import {
   type FieldErrors,
 } from "@/lib/crm/outreach/email-template";
 import type { SenderProfile } from "@/lib/crm/outreach/sender-profiles";
+import { formatCrmDate } from "@/lib/crm/format";
+import type { SendQuota } from "@/lib/crm/outreach/send-quota";
 
 /** Remembers which sender profile this browser uses (e.g. Niki's laptop -> "Niki"). */
 const PROFILE_STORAGE_KEY = "crm-sender-profile";
@@ -96,6 +98,7 @@ export type EmailFormClient = {
 type CrmEmailFormProps = {
   client?: EmailFormClient | null;
   senderProfiles: SenderProfile[];
+  initialSendQuota: SendQuota;
 };
 
 function clientPrefill(client: EmailFormClient | null | undefined): Partial<EmailFields> {
@@ -107,13 +110,15 @@ function clientPrefill(client: EmailFormClient | null | undefined): Partial<Emai
   };
 }
 
-export function CrmEmailForm({ client, senderProfiles }: CrmEmailFormProps) {
+export function CrmEmailForm({ client, senderProfiles, initialSendQuota }: CrmEmailFormProps) {
   const [fields, setFields] = useState<EmailFields>({ ...EMPTY_FIELDS, ...clientPrefill(client) });
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [alreadySent, setAlreadySent] = useState(false);
   const [allowRepeat, setAllowRepeat] = useState(false);
+  const [sendQuota, setSendQuota] = useState<SendQuota>(initialSendQuota);
+  const quotaExhausted = sendQuota.limit !== null && sendQuota.sent >= sendQuota.limit;
 
   const [profiles, setProfiles] = useState<SenderProfile[]>(senderProfiles);
   const [profileId, setProfileId] = useState<number | null>(null);
@@ -201,6 +206,7 @@ export function CrmEmailForm({ client, senderProfiles }: CrmEmailFormProps) {
         body: JSON.stringify({ ...fields, allowRepeat, clientId: client?.id }),
       });
       const data = await res.json().catch(() => ({}));
+      if (data.sendQuota) setSendQuota(data.sendQuota);
       if (res.status === 401) {
         window.location.href = "/crm/login";
         return;
@@ -395,9 +401,23 @@ export function CrmEmailForm({ client, senderProfiles }: CrmEmailFormProps) {
         )}
 
         <div className="flex flex-wrap items-center gap-4">
-          <button type="submit" disabled={status === "loading"} className="btn-primary">
+          <button
+            type="submit"
+            disabled={status === "loading" || quotaExhausted}
+            className="btn-primary disabled:cursor-not-allowed disabled:opacity-50"
+          >
             {status === "loading" ? "Odesílám…" : "Odeslat e-mail"}
           </button>
+          <p
+            className={`text-sm ${quotaExhausted ? "font-semibold text-red-700" : "text-pastel-dark/70"}`}
+            title="Počítají se e-maily odeslané z CRM za posledních 24 hodin."
+          >
+            Odesláno za 24 h: {sendQuota.sent}
+            {sendQuota.limit !== null && ` / ${sendQuota.limit}`}
+            {quotaExhausted &&
+              sendQuota.nextFreeAt &&
+              ` - limit vyčerpán, další e-mail půjde odeslat ${formatCrmDate(sendQuota.nextFreeAt)}`}
+          </p>
           {message && (
             <p
               className={`text-sm ${status === "success" ? "text-pastel-accent-hover" : "text-red-600"}`}

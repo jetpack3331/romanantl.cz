@@ -62,6 +62,12 @@ describe("listClients sorting", () => {
     expect(listClients(db, {}, null).map((client) => client.name)).toEqual(["Gama", "beta", "Alfa"]);
   });
 
+  it("puts low-priority clients last in the default order only", () => {
+    createClient(db, { name: "Delta", status: "nabídnout správu", webScore: 99 });
+    expect(listClients(db, {}, null).map((client) => client.name)).toEqual(["Gama", "beta", "Alfa", "Delta"]);
+    expect(listClients(db, {}, { key: "web", direction: "desc" })[0].name).toBe("Delta");
+  });
+
   it("sorts names case-insensitively", () => {
     expect(names("firma", "asc")).toEqual(["Alfa", "beta", "Gama"]);
     expect(names("firma", "desc")).toEqual(["Gama", "beta", "Alfa"]);

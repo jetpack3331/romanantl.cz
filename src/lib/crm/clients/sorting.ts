@@ -1,4 +1,4 @@
-import { CLIENT_STATUSES } from "@/lib/crm/clients/statuses";
+import { CLIENT_STATUSES, LOW_PRIORITY_STATUSES } from "@/lib/crm/clients/statuses";
 
 export type SortDirection = "asc" | "desc";
 
@@ -53,6 +53,17 @@ export function parseClientSort(params: URLSearchParams): ClientSort | null {
 export function clientOrderBy(sort: ClientSort): string {
   const primary = SORT_COLUMNS[sort.key].orderBy(sort.direction);
   return sort.key === "firma" ? primary : `${primary}, name COLLATE NOCASE ASC`;
+}
+
+const sqlList = (values: readonly string[]) =>
+  values.map((value) => `'${value.replace(/'/g, "''")}'`).join(", ");
+
+/**
+ * ORDER BY for the list without a selected column: low-priority clients
+ * (e.g. "nabídnout správu") last, otherwise DEFAULT_CLIENT_SORT.
+ */
+export function defaultClientOrderBy(): string {
+  return `status IN (${sqlList(LOW_PRIORITY_STATUSES)}), ${clientOrderBy(DEFAULT_CLIENT_SORT)}`;
 }
 
 /**

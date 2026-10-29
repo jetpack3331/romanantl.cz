@@ -14,7 +14,9 @@ interface ImportMetaEnv {
   readonly CRM_SMTP_USER?: string;
   readonly CRM_SMTP_PASSWORD?: string;
   readonly CRM_SMTP_FROM?: string;
+  readonly CRM_SMTP_ALLOW_PLAIN?: string;
   readonly CRM_DATA_DIR?: string;
+  readonly CRM_DAILY_SEND_LIMIT?: string;
 }
 
 interface ImportMeta {

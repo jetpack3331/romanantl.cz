@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import { getClient, markEmailSent } from "@/lib/crm/clients/repository";
 import {
   getCrmAuthConfig,
+  getCrmDailySendLimit,
   getCrmSmtpConfig,
   getPublicSiteUrl,
 } from "@/lib/crm/config";
@@ -10,6 +11,8 @@ import { getDb } from "@/lib/crm/db";
 import { jsonResponse, readJsonBody } from "@/lib/crm/json-response";
 import { renderEmail, validateEmailFields } from "@/lib/crm/outreach/email-template";
 import { isUnsubscribed, logSentEmail, wasSentTo } from "@/lib/crm/outreach/repository";
+import { getSendQuota, isQuotaExhausted } from "@/lib/crm/outreach/send-quota";
+import { formatCrmDate } from "@/lib/crm/format";
 import { createUnsubscribeToken } from "@/lib/crm/tokens";
 
 export const prerender = false;
@@ -35,6 +38,18 @@ export const POST: APIRoute = async ({ request }) => {
   const db = getDb();
   const client =
     typeof record.clientId === "number" ? getClient(db, record.clientId) : null;
+
+  const limit = getCrmDailySendLimit();
+  const quota = getSendQuota(db, limit);
+  if (isQuotaExhausted(quota)) {
+    return jsonResponse(
+      {
+        error: `Denní limit ${quota.limit} e-mailů je vyčerpaný. Další půjde odeslat ${formatCrmDate(quota.nextFreeAt ?? "")}.`,
+        sendQuota: quota,
+      },
+      429
+    );
+  }
 
   if (isUnsubscribed(db, fields.recipientEmail)) {
     return jsonResponse(
@@ -63,7 +78,11 @@ export const POST: APIRoute = async ({ request }) => {
     port: smtp.port,
     secure: smtp.port === 465,
     // Other ports (587) must upgrade via STARTTLS; never send the password in plain text
-    requireTLS: smtp.port !== 465,
+    requireTLS: smtp.port !== 465 && smtp.requireTls,
+    // Fail fast instead of leaving the form spinning on a dead connection
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 30_000,
     auth: { user: smtp.user, pass: smtp.password },
   });
 
@@ -94,5 +113,9 @@ export const POST: APIRoute = async ({ request }) => {
   });
   if (client) markEmailSent(db, client.id, now);
 
-  return jsonResponse({ ok: true, clientId: client?.id ?? null });
+  return jsonResponse({
+    ok: true,
+    clientId: client?.id ?? null,
+    sendQuota: getSendQuota(db, limit, now),
+  });
 };

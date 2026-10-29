@@ -2,10 +2,11 @@
 import CrmLayout from "@/layouts/CrmLayout.astro";
 import { CrmEmailForm, type EmailFormClient } from "@/components/react/CrmEmailForm";
 import { getClient, splitEmails } from "@/lib/crm/clients/repository";
-import { getCrmSmtpConfig } from "@/lib/crm/config";
+import { getCrmDailySendLimit, getCrmSmtpConfig } from "@/lib/crm/config";
 import { getDb } from "@/lib/crm/db";
 import { isUnsubscribed } from "@/lib/crm/outreach/repository";
 import { listSenderProfiles } from "@/lib/crm/outreach/sender-profiles";
+import { getSendQuota } from "@/lib/crm/outreach/send-quota";
 
 export const prerender = false;
 
@@ -25,6 +26,7 @@ const client: EmailFormClient | null = record
   : null;
 const senderProfiles = listSenderProfiles(db);
 const smtpConfigured = getCrmSmtpConfig() !== null;
+const sendQuota = getSendQuota(db, getCrmDailySendLimit());
 ---
 
 <CrmLayout title={client ? `E-mail - ${client.name}` : "Napsat e-mail"} nav>
@@ -40,6 +42,14 @@ const smtpConfigured = getCrmSmtpConfig() !== null;
       )
     }
     {
+      record && record.status === "nabídnout správu" && (
+        <p class="mt-4 rounded-btn bg-amber-100 p-3 text-sm text-amber-800">
+          Klient má stav „nabídnout správu“ (nový nebo nedávno předělaný web). Šablona nabízí úpravu webu,
+          zvažte prosím, jestli se pro něj hodí.
+        </p>
+      )
+    }
+    {
       record && record.status === "nevolat" && (
         <p class="mt-4 rounded-btn bg-red-100 p-3 text-sm text-red-700">
           Klient má stav „nevolat“. Neposílejte mu prosím další nabídky.
@@ -47,7 +57,12 @@ const smtpConfigured = getCrmSmtpConfig() !== null;
       )
     }
     <div class="mt-6">
-      <CrmEmailForm client:load client={client} senderProfiles={senderProfiles} />
+      <CrmEmailForm
+        client:load
+        client={client}
+        senderProfiles={senderProfiles}
+        initialSendQuota={sendQuota}
+      />
     </div>
   </main>
 </CrmLayout>
